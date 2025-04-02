@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!-- <link href="style.css" rel="stylesheet" /> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+  .accordion-button:is(.collapsed) {
+    background-color: rgba(33,37,41,0.03);
+  }
+  .clock-screen {
+    background-color: rgba(33,37,41,0.13);
+    color: rgba(33,37,41,0.63);
+  }
+  </style>
+</head>
+<body>
+
+</div>
+  <section class="row border p-2">
+    <div class="col">
+      <div class="accordion" id="eventlog">
+        <div class="accordion-item">
+          <div class="accordion-header" id="history-title">
+            <button class="accordion-button py-2" type="button" data-bs-toggle="collapse" data-bs-target="#history-content" aria-expanded="true" aria-controls="history-content">
+              history
+            </button>
+          </div>
+          <div id="history-content" class="accordion-collapse collapse show" aria-labelledby="history-title" data-bs-parent="#eventlog">
+            <div class="accordion-body" style="overflow:auto">
+              <ul class="list-group list-group-horizontal" role="eventlog">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="row border p-2">
+    <div class="col-4">
+      <div class="card" id="queue">
+        <div class="card-header py-0 pe-0">
+          <div class="row">
+            <div class="col d-flex pt-1">
+              queue
+              <div class="form-check form-switch ms-1">
+                <input class="form-check-input" type="checkbox" role="app" id="app-queue-switch" checked disabled>
+              </div>
+            </div>
+            <div class="col-3 col-sm-5 text-end my-0 py-0">
+              <span class="badge clock-screen px-1" role="app-clock">
+                <i class="bi bi-clock"></i>
+                <span id="app-clock" role="app-clock">--</span>
+                <div class="btn-group-toggle d-inline" data-toggle="buttons">
+                  <input type="checkbox" class="btn-check" id="app-clock-switch" autocomplete="off">
+                  <label class="btn btn-info m-0 py-0 px-1" for="app-clock-switch">
+                    <small><i class="bi bi-play-fill"></i></small>
+                  </label>
+                </div>
+              </span>
+          </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="list-group" role="queue">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card" id="consumer">
+        <div class="card-header">consumer</div>
+        <div class="card-body">
+          <div class="btn-toolbar btn-group-sm" role="app">
+            <div class="btn-group btn-group-sm me-1" role="app-consume-max-in-flight">
+              <input type="radio" class="btn-check" id="app-consume-max-in-flight-radio1" name="app-consume-max-in-flight" value="1" checked>
+              <label class="btn btn-outline-secondary" for="app-consume-max-in-flight-radio1">1</label>
+              <input type="radio" class="btn-check" id="app-consume-max-in-flight-radio2" name="app-consume-max-in-flight" value="2">
+              <label class="btn btn-outline-secondary" for="app-consume-max-in-flight-radio2">2</label>
+              <input type="radio" class="btn-check" id="app-consume-max-in-flight-radio3" name="app-consume-max-in-flight" value="4">
+              <label class="btn btn-outline-secondary" for="app-consume-max-in-flight-radio3">4</label>
+            </div>
+            <div class="btn-group btn-group-sm me-1"  role="app-consume-action">
+              <input type="radio" class="btn-check" id="app-consume-action-read" name="app-consume-action" value="read" checked>
+              <label class="btn btn-outline-secondary" for="app-consume-action-read">read</label>
+              <input type="radio" class="btn-check" id="app-consume-action-claim" name="app-consume-action" value="claim">
+              <label class="btn btn-outline-secondary" for="app-consume-action-claim">claim</label>
+            </div>
+            <div class="btn-group btn-group-sm" role="app-consumer-read">
+              <button type="button" class="btn btn-primary" id="app-consumer-read">Go</button>
+            </div>
+          </div>
+          <hr>
+          <ul class="list-group" role="consumer">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card" id="sink">
+        <div class="card-header">storage</div>
+        <div class="card-body">
+          <ul class="list-group" role="sink">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.carbonads.com/carbon.js?serve=CKYIKKJL&placement=getbootstrapcom" crossorigin="anonymous"></script>
+  <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js" crossorigin="anonymous"></script>
+  <script>
+    const MIN_PRODUCER_INTERVAL = 1000;
+
+
+    function App(interval) {
+      var interval = Math.max((interval || 0), MIN_PRODUCER_INTERVAL);
+
+      let $clock                 = $( '#app-clock' );
+      let $consume_max_in_flight = $( 'input[name="app-consume-max-in-flight"]' );
+      let $consume_action        = $( 'input[name="app-consume-action"]' );
+      let $consume_read          = $( '#app-consumer-read' );
+      let $queue_switch          = $( '#app-queue-switch' );
+      let $clock_switch          = $( '#app-clock-switch' );
+      var timer               = null;
+      var timer_running       = false;
+      var start_at            = null;
+      var last_clock_pause_at = 0;
+      var last_timer_pause_at = null;
+      var max_in_flight       = null;
+      var read_action         = null;
+      var sync_lock           = 0;
+      var self = this;
+
+      function highlight_queue_messages() {
+        if (read_action == 'read') {
+          queue.highlight_read_messages(max_in_flight);
+          return;
+        }
+        if (read_action == 'claim') {
+          queue.highlight_claim_messages(max_in_flight);
+          return;
+        }
+      }
+      function start_clock() {
+        if (sync_lock > 0) {
+          return;
+        }
+        sync_lock++
+
+        if (start_at == null) {
+          start_at = Date.now();
+        }
+
+        timer_running = true;
+
+        if (timer == null) {
+          timer = setInterval(function() {
+            if (!timer_running) {
+              return;
+            }
+
+            var escaped = Math.trunc((Date.now() - start_at) / 1000);
+            var ts      = `000${escaped}`.slice(-4);
+
+            $clock.text(ts);
+
+            producer.push(ts);
+          }, interval)
+        }
+        sync_lock--
+      }
+      function stop_clock() {
+        timer_running = false;
+
+        last_clock_pause_at = parseInt($clock.text());
+      }
+      this.init = function() {
+        // consume_max_in_flight
+        {
+          var option = $consume_max_in_flight.filter(':checked');
+          if (option.length) {
+            max_in_flight = option.val();
+          }
+        }
+        // consume_action
+        {
+          var option = $consume_action.filter( ':checked' );
+          if (option.length) {
+            read_action = option.val();
+          }
+        }
+        highlight_queue_messages();
+
+        // add onread event
+        consumer.on.read(function() {
+          highlight_queue_messages();
+        })
+        // change clock_switch checkbox
+        $clock_switch.click(function() {
+          if (this.checked) {
+            // play
+            $clock_switch.parent().find('label')
+              .addClass('btn-warning')
+              .removeClass('btn-info')
+              .html(`<small><i class="bi bi-pause-fill"></i></small>`);
+
+            if (start_at == null) {
+              start_at = Date.now();
+            } else {
+              start_at = Date.now() - (last_clock_pause_at + 1) *1e3;
+            }
+            start_clock();
+
+            $queue_switch.attr('disabled', false);
+          } else {
+            // pause
+            $clock_switch.parent().find('label')
+              .addClass('btn-info')
+              .removeClass('btn-warning')
+              .html(`<small><i class="bi bi-play-fill"></i></small>`);
+            $queue_switch.attr('disabled', true);
+
+            stop_clock();
+          }
+        });
+        // change queue switch checkbox
+        $queue_switch.click(function() {
+          if (this.checked) {
+            producer.start()
+          } else {
+            producer.stop()
+          }
+        });
+        // click read / claim button
+        $consume_read.click(function() {
+          console.log(max_in_flight, read_action);
+          let read_proc = consumer[read_action];
+          read_proc(max_in_flight);
+        });
+        // change max-in-flight radio box
+        $consume_max_in_flight.change(function(){
+          var option = $consume_max_in_flight.filter(':checked');
+          max_in_flight = option.val();
+
+          highlight_queue_messages();
+        });
+        // change read-action radio box
+        $consume_action.change(function(){
+          var option = $consume_action.filter(':checked');
+          read_action = option.val();
+
+          highlight_queue_messages();
+        });
+      }
+      this.current_timestamp = function() {
+        return $clock.text();
+      }
+
+      return this;
+    }
+
+    function EventLog() {
+      var $component = $(`#eventlog ul[role="eventlog"]`);
+      var size = 0;
+
+      this.add_messages = function(...log) {
+        let index = size + 1;
+
+        var list_item_html = [];
+        for (const r of log) {
+          let [body, action] = r;
+          if (action == "ack") {
+            list_item_html.push(`<li class="list-group-item list-group-item-primary py-1 px-2 text-nowrap"><small>${body}</small></li>`);
+          } else if (action == "skip") {
+            list_item_html.push(`<li class="list-group-item list-group-item-secondary py-1 px-2 text-nowrap"><small>${body}</small></li>`);
+          } else {
+            throw new Error(`unknown action ${action}`);
+          }
+        }
+
+        let timestamp = app.current_timestamp();
+        let list_item_html_final = list_item_html.join("");
+        $component.append(`<li class="list-group-item px-2">
+          <div class="card">
+            <div class="card-header py-1">${index}
+              <span class="badge text-bg-secondary px-1">
+                <small><i class="bi bi-clock"></i></small> ${timestamp}
+              </span>
+            </div>
+            <div class="card-body py-1 px-2">
+              <ul class="list-group list-group-flush">
+                ${list_item_html_final}
+              </ul>
+            </div>
+          </div>
+        </li>`);
+
+        size++;
+      }
+
+      return this;
+    }
+
+    function Sink() {
+      var $component = $(`#sink ul[role="sink"]`);
+      var size = 0;
+
+      this.push = function(id, body) {
+        let store_id = `store-${id}`;
+        // exists?
+        if ($(`#${store_id}`).length > 0) {
+          return;
+        }
+
+        $component.append(`<li id="sink-${id}" class="list-group-item list-group-item-secondary py-1">${body} <span class="badge text-bg-secondary"></span></li>`);
+        size++;
+      }
+    }
+
+    function Queue() {
+      var $component          = $(`#queue ul[role="queue"]`);
+      var highlight_messages  = [];
+      var last_added_message  = null;
+      var last_read_messages  = [];
+      var last_claim_messages = [];
+      var last_deliverd_index = 0;
+      var last_claim_size     = 0;
+      var highlight_read_size = 0;
+      var size = 0;
+
+      function lag() {
+        return size - last_deliverd_index;
+      }
+      function max_read_range(count) {
+        count = Math.min(count, size - last_deliverd_index);
+        return [last_deliverd_index, last_deliverd_index + count, count];
+      }
+      function max_claim_range(count) {
+        count = Math.min(count, last_deliverd_index);
+        return [0, count, count];
+      }
+      function unset_highlight_messages() {
+        if (highlight_messages.length > 0) {
+          for (const id of highlight_messages) {
+            var $item = $(`#${id}`);
+            let index = $component.find(`#${id}`).index();
+            if (index >= last_deliverd_index) {
+              $item.addClass('list-group-item-light')
+                .removeClass('list-group-item-info');
+            } else if (index < last_claim_size) {
+              $item.addClass('list-group-item-dark')
+                .removeClass('list-group-item-info');
+            } else {
+              $item.addClass('list-group-item-secondary')
+                .removeClass('list-group-item-info');
+            }
+          }
+          highlight_messages = [];
+          highlight_read_size = 0;
+        }
+      }
+      this.highlight_read_messages = function(count) {
+        unset_highlight_messages();
+        let [offset, ubound, size] = max_read_range(count);
+        for (var i = offset; i < ubound; i++) {
+          var item = $component.children('li').get(i);
+          if (item) {
+            var $item = $(item);
+            $item.addClass('list-group-item-info')
+              .removeClass('list-group-item-light')
+              .removeClass('list-group-item-primary');
+            var id = $item.attr('id');
+
+            highlight_messages.push(id);
+          }
+        }
+        highlight_read_size = count;
+      }
+      this.highlight_claim_messages = function(count) {
+        unset_highlight_messages();
+        let [offset, ubound, size] = max_claim_range(count);
+        for (var i = offset; i < ubound; i++) {
+          var item = $component.children('li').get(i);
+          if (item) {
+            var $item = $(item);
+            $item.addClass('list-group-item-info')
+              .removeClass('list-group-item-dark')
+              .removeClass('list-group-item-secondary');
+            var id = $item.attr('id');
+
+            highlight_messages.push(id);
+          }
+        }
+      }
+      this.push = function(id, body) {
+        if (last_added_message) {
+          if (lag() > highlight_read_size) {
+            let last_id = last_added_message;
+            let $item = $(`#${last_id}`);
+            $item.addClass('list-group-item-light')
+              .removeClass('list-group-item-primary');
+          }
+        }
+        $component.append(`<li id="message-id-${id}" class="list-group-item list-group-item-primary py-1 d-flex justify-content-between">${body}<span class="badge text-bg-secondary"></span></li>`);
+        last_added_message = (`message-id-${id}`);
+        size++;
+
+        if (lag() <= highlight_read_size) {
+          var $item = $(`#${last_added_message}`);
+          $item.addClass('list-group-item-info')
+            .removeClass('list-group-item-primary');
+
+          highlight_messages.push(last_added_message);
+        }
+      }
+      this.del = function(...ids) {
+        for (const id of ids) {
+          var $item = $(`#${id}`);
+          if ($item.length) {
+            $item.remove();
+            size--;
+            last_deliverd_index--;
+
+            if (last_deliverd_index < 0) {
+              last_deliverd_index = 0;
+            }
+          }
+        }
+      }
+      this.read = function(count) {
+        if (last_read_messages.length > 0) {
+          var prev_messages = last_read_messages;
+          // console.log(prev_messages);
+          for (const id of prev_messages) {
+            var $item = $(`#${id}`);
+            $item.addClass('list-group-item-secondary')
+              .removeClass('list-group-item-light')
+              .removeClass('list-group-item-primary');
+          }
+          last_read_messages = [];
+        }
+
+        var read_ids = []
+        var messages = [];
+        let [offset, ubound, size] = max_read_range(count);
+        for (var i = offset; i < ubound; i++) {
+          var item = $component.children('li').get(i);
+          if (item) {
+            var $item = $(item);
+            $item.addClass('list-group-item-secondary')
+              .removeClass('list-group-item-light')
+              .removeClass('list-group-item-primary');
+            var id      = $item.attr('id');
+            var content = $(item.firstChild).text();
+            read_ids.push(id);
+            messages.push([id, content]);
+
+            console.log("message::", id, content);
+            last_deliverd_index++;
+          }
+        }
+        last_read_messages = read_ids;
+        return messages;
+      }
+      this.claim = function(count) {
+        if (last_claim_messages.length > 0) {
+          var prev_messages = last_claim_messages;
+          // console.log(prev_messages);
+          for (const id of prev_messages) {
+            var $item = $(`#${id}`);
+            $item.addClass('list-group-item-dark')
+              .removeClass('list-group-item-secondary');
+          }
+          last_claim_messages = [];
+        }
+
+        var read_ids = []
+        var messages = [];
+        let [offset, ubound, size] = max_claim_range(count);
+        for (var i = offset; i < ubound; i++) {
+          var item = $component.children('li').get(i);
+          if (item) {
+            var $item = $(item);
+            $item.addClass('list-group-item-dark')
+              .removeClass('list-group-item-secondary');
+            var id      = $item.attr('id');
+            var content = $(item.firstChild).text();
+            read_ids.push(id);
+            messages.push([id, content]);
+
+            console.log("message::", id, content);
+          }
+        }
+        last_claim_size     = read_ids.length;
+        last_claim_messages = read_ids;
+        return messages;
+      }
+      return this;
+    }
+
+    function Consumer() {
+      var $component = $(`#consumer ul[role="consumer"]`);
+      var consumed_messages = [];
+      var size = 0;
+      var self = this;
+      var on_read_handler = [];
+
+      function add(id, body) {
+        let consume_id = `consumer-${id}`;
+        let $item = $component.append(`<li id="${consume_id}" class="list-group-item list-group-item-secondary">${body} <div class="text-end"><button type="button" class="btn btn-primary btn-sm mx-1" role="consumer" action="ack" message_id="${id}"><small>ACK</small></button><button type="button" class="btn btn-secondary btn-sm" role="consumer" action="skip"><small>skip</small></button></div></li>`);
+        // hide ack button
+        $item.find(`#${consume_id} button[role="consumer"]`).hide();
+        size++;
+
+        if (size == 1) {
+          activate_message();
+        }
+      }
+      function activate_message() {
+        if (size > 0) {
+          let $first = $component.find('li').first();
+          if (!$first) {
+            return;
+          }
+          $first.addClass('list-group-item-light')
+            .removeClass('list-group-item-secondary');
+
+
+          let $buttons = $first.find('button[role="consumer"]').show();
+          console.log($buttons)
+          let $ack = $buttons.filter('[action=ack]');
+          console.log($ack)
+          if ($ack) {
+            $ack.click(function(){
+              let $this = $(this);
+              let $item = $this.parent().closest('li');
+              if ($item.length < 0 ) {
+                return;
+              }
+              let message_id   = $this.attr("message_id");
+              let message_body = $($item[0].firstChild).text();
+              let consume_id   = $item.attr("id");
+              if (message_id) {
+                self.ack(message_id, message_body)
+              }
+              // store to consumed_messages
+              consumed_messages.push([message_body, 'ack']);
+              // remove this
+              self.del(consume_id);
+            });
+          }
+          let $skip = $buttons.filter('[action=skip]');
+          if ($skip) {
+            $skip.click(function(){
+              let $this = $(this);
+              let $item = $this.parent().closest('li');
+              if ($item.length < 0 ) {
+                return;
+              }
+              let message_body = $($item[0].firstChild).text();
+              let consume_id   = $item.attr("id");
+              // store to consumed_messages
+              consumed_messages.push([message_body, 'skip']);
+              // remove this
+              self.del(consume_id);
+            });
+          }
+        }
+      }
+      this.read = function(count) {
+        var messages = queue.read(count)
+        for (const m of messages) {
+          console.log(m);
+          let [id, body] = m;
+          add(id, body);
+        }
+        for (const proc of on_read_handler) {
+          proc();
+        }
+      }
+      this.claim = function(count) {
+        var messages = queue.claim(count)
+        for (const m of messages) {
+          console.log(m);
+          let [id, body] = m;
+          let consume_id = `consumer-${id}`;
+          // exists?
+          if ($(`#${consume_id}`).length > 0) {
+            continue;
+          }
+
+          add(id, body);
+        }
+      }
+      this.ack = function(id, body) {
+        sink.push(id, body);
+        queue.del(id);
+
+      }
+      this.del = function(consume_id) {
+        $(`#${consume_id}`)?.remove();
+        size--;
+        activate_message();
+
+        if (size == 0) {
+          self.flush();
+        }
+      }
+      this.flush = function() {
+        eventlog.add_messages(...consumed_messages);
+        consumed_messages = [];
+      }
+      this.on = {
+        read: function(handler) {
+          on_read_handler.push(handler)
+        }
+      }
+
+      return this;
+    }
+
+    function Producer(interval) {
+      var running = true;
+      var self = this;
+
+      this.push = function(ts) {
+        if (!running) {
+          return;
+        }
+
+        var id = ts;
+
+        // limit id
+        if (id > 9999) {
+          self.stop()
+        }
+        queue.push(id, `${id} - message`);
+      }
+      this.start = function() {
+        running = true;
+      }
+      this.stop = function() {
+        running = false;
+      }
+
+      return this;
+    }
+
+  </script>
+  <script>
+    ;
+    $ = jQuery.noConflict();
+
+    var app      = new App(1000);
+    var eventlog = new EventLog();
+    var producer = new Producer();
+    var queue    = new Queue();
+    var consumer = new Consumer();
+    var sink     = new Sink();
+
+
+    $( document ).ready(function() {
+      app.init()
+    });
+  </script>
+</body>
+</html>
