@@ -658,14 +658,14 @@
   </script>
   <script type="text/javascript">
     ;
-    let initialized = 0;
+    let initialized = 0
 
-    var app      = new App(1000);
-    var eventlog = new EventLog();
-    var producer = new Producer();
-    var queue    = new Queue();
-    var consumer = new Consumer();
-    var sink     = new Sink();
+    var app      = null
+    var eventlog = null
+    var producer = null
+    var queue    = null
+    var consumer = null
+    var sink     = null
 
     function init() {
       if (++initialized > 1) {
@@ -673,7 +673,14 @@
         return
       }
 
-      $ = jQuery?.noConflict();
+      $ = jQuery.noConflict()
+
+      app      = new App(1000)
+      eventlog = new EventLog()
+      producer = new Producer()
+      queue    = new Queue()
+      consumer = new Consumer()
+      sink     = new Sink()
 
       $( document ).ready(function() {
         app.init()
