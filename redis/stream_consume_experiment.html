@@ -110,94 +110,101 @@
   </section>
 
 
-  <script type="text/htmlpreview" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="text/htmlpreview" src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-  <script type="text/htmlpreview">
-    const MIN_PRODUCER_INTERVAL = 1000;
+  <script type="text/htmlpreview" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js#//raw.githubusercontent.com"></script>
+  <script type="text/htmlpreview" src="https://code.jquery.com/jquery-3.7.1.slim.min.js#//raw.githubusercontent.com"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script>
+    const MIN_PRODUCER_INTERVAL = 1000
+    const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '😗', '😙', '😚', '☺', '🙂', '🤗', '🤔', '😐', '😑', '😶', '🙄', '😏', '😣', '😥', '😮', '🤐', '😯', '😪', '😫', '😴', '😌', '🤓', '😛', '😜', '😝', '🤤', '😒', '😓', '😔', '😕', '🙃', '🤑', '😲', '☹', '🙁', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😩', '😬', '😰', '😱', '😳', '😵', '😡', '😠', '😇', '🤠', '🤡', '🤥', '😷', '🤒', '🤕', '🤢', '🤧', '😈', '👿', '👹', '👺', '💀', '☠', '👻', '👽', '👾', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '👦', '👦🏻', '👦🏼', '👦🏽', '👦🏾', '👦🏿', '👧', '👧🏻', '👧🏼', '👧🏽', '👧🏾', '👧🏿', '👨', '👨🏻', '👨🏼', '👨🏽', '👨🏾', '👨🏿', '👩', '👩🏻', '👩🏼', '👩🏽', '👩🏾', '👩🏿', '👴', '👴🏻', '👴🏼', '👴🏽', '👴🏾', '👴🏿', '👵', '👵🏻', '👵🏼', '👵🏽', '👵🏾', '👵🏿', '👶', '👶🏻', '👶🏼', '👶🏽', '👶🏾', '👶🏿', '👼', '👼🏻', '👼🏼', '👼🏽', '👼🏾', '👼🏿', '👮', '👮🏻', '👮🏼', '👮🏽', '👮🏾', '👮🏿', '🕵', '🕵🏻', '🕵🏼', '🕵🏽', '🕵🏾', '🕵🏿', '💂', '💂🏻', '💂🏼', '💂🏽', '💂🏾', '💂🏿', '👷', '👷🏻', '👷🏼', '👷🏽', '👷🏾', '👷🏿', '👳', '👳🏻', '👳🏼', '👳🏽', '👳🏾', '👳🏿', '👱', '👱🏻', '👱🏼', '👱🏽', '👱🏾', '👱🏿', '🎅', '🎅🏻', '🎅🏼', '🎅🏽', '🎅🏾', '🎅🏿', '🤶', '🤶🏻', '🤶🏼', '🤶🏽', '🤶🏾', '🤶🏿', '👸', '👸🏻', '👸🏼', '👸🏽', '👸🏾', '👸🏿', '🤴', '🤴🏻', '🤴🏼', '🤴🏽', '🤴🏾', '🤴🏿', '👰', '👰🏻', '👰🏼', '👰🏽', '👰🏾', '👰🏿', '🤵', '🤵🏻', '🤵🏼', '🤵🏽', '🤵🏾', '🤵🏿', '🤰', '🤰🏻', '🤰🏼', '🤰🏽', '🤰🏾', '🤰🏿', '👲', '👲🏻', '👲🏼', '👲🏽', '👲🏾', '👲🏿', '🙍', '🙍🏻', '🙍🏼', '🙍🏽', '🙍🏾', '🙍🏿', '🙎', '🙎🏻', '🙎🏼', '🙎🏽', '🙎🏾', '🙎🏿', '🙅', '🙅🏻', '🙅🏼', '🙅🏽', '🙅🏾', '🙅🏿', '🙆', '🙆🏻', '🙆🏼', '🙆🏽', '🙆🏾', '🙆🏿', '💁', '💁🏻', '💁🏼', '💁🏽', '💁🏾', '💁🏿', '🙋', '🙋🏻', '🙋🏼', '🙋🏽', '🙋🏾', '🙋🏿', '🙇', '🙇🏻', '🙇🏼', '🙇🏽', '🙇🏾', '🙇🏿', '🤦', '🤦🏻', '🤦🏼', '🤦🏽', '🤦🏾', '🤦🏿', '🤷', '🤷🏻', '🤷🏼', '🤷🏽', '🤷🏾', '🤷🏿', '💆', '💆🏻', '💆🏼', '💆🏽', '💆🏾', '💆🏿', '💇', '💇🏻', '💇🏼', '💇🏽', '💇🏾', '💇🏿', '🚶', '🚶🏻', '🚶🏼', '🚶🏽', '🚶🏾', '🚶🏿', '🏃', '🏃🏻', '🏃🏼', '🏃🏽', '🏃🏾', '🏃🏿', '💃', '💃🏻', '💃🏼', '💃🏽', '💃🏾', '💃🏿', '🕺', '🕺🏻', '🕺🏼', '🕺🏽', '🕺🏾', '🕺🏿', '👯', '🕴', '🗣', '👤', '👥', '🤺', '🏇', '⛷', '🏂', '🏌', '🏄', '🏄🏻', '🏄🏼', '🏄🏽', '🏄🏾', '🏄🏿', '🚣', '🚣🏻', '🚣🏼', '🚣🏽', '🚣🏾', '🚣🏿', '🏊', '🏊🏻', '🏊🏼', '🏊🏽', '🏊🏾', '🏊🏿', '⛹', '⛹🏻', '⛹🏼', '⛹🏽', '⛹🏾', '⛹🏿', '🏋', '🏋🏻', '🏋🏼', '🏋🏽', '🏋🏾', '🏋🏿', '🚴', '🚴🏻', '🚴🏼', '🚴🏽', '🚴🏾', '🚴🏿', '🚵', '🚵🏻', '🚵🏼', '🚵🏽', '🚵🏾', '🚵🏿', '🏎', '🏍', '🤸', '🤸🏻', '🤸🏼', '🤸🏽', '🤸🏾', '🤸🏿', '🤼', '🤼🏻', '🤼🏼', '🤼🏽', '🤼🏾', '🤼🏿', '🤽', '🤽🏻', '🤽🏼', '🤽🏽', '🤽🏾', '🤽🏿', '🤾', '🤾🏻', '🤾🏼', '🤾🏽', '🤾🏾', '🤾🏿', '🤹', '🤹🏻', '🤹🏼', '🤹🏽', '🤹🏾', '🤹🏿', '👫', '👬', '👭', '💏', '👩‍❤️‍💋‍👨', '👨‍❤️‍💋‍👨', '👩‍❤️‍💋‍👩', '💑', '👩‍❤️‍👨', '👨‍❤️‍👨', '👩‍❤️‍👩', '👪', '👨‍👩‍👦', '👨‍👩‍👧', '👨‍👩‍👧‍👦', '👨‍👩‍👦‍👦', '👨‍👩‍👧‍👧', '👨‍👨‍👦', '👨‍👨‍👧', '👨‍👨‍👧‍👦', '👨‍👨‍👦‍👦', '👨‍👨‍👧‍👧', '👩‍👩‍👦', '👩‍👩‍👧', '👩‍👩‍👧‍👦', '👩‍👩‍👦‍👦', '👩‍👩‍👧‍👧', '🏻', '🏼', '🏽', '🏾', '🏿', '💪', '💪🏻', '💪🏼', '💪🏽', '💪🏾', '💪🏿', '🤳', '🤳🏻', '🤳🏼', '🤳🏽', '🤳🏾', '🤳🏿', '👈', '👈🏻', '👈🏼', '👈🏽', '👈🏾', '👈🏿', '👉', '👉🏻', '👉🏼', '👉🏽', '👉🏾', '👉🏿', '☝', '☝🏻', '☝🏼', '☝🏽', '☝🏾', '☝🏿', '👆', '👆🏻', '👆🏼', '👆🏽', '👆🏾', '👆🏿', '🖕', '🖕🏻', '🖕🏼', '🖕🏽', '🖕🏾', '🖕🏿', '👇', '👇🏻', '👇🏼', '👇🏽', '👇🏾', '👇🏿', '✌', '✌🏻', '✌🏼', '✌🏽', '✌🏾', '✌🏿', '🤞', '🤞🏻', '🤞🏼', '🤞🏽', '🤞🏾', '🤞🏿', '🖖', '🖖🏻', '🖖🏼', '🖖🏽', '🖖🏾', '🖖🏿', '🤘', '🤘🏻', '🤘🏼', '🤘🏽', '🤘🏾', '🤘🏿', '🤙', '🤙🏻', '🤙🏼', '🤙🏽', '🤙🏾', '🤙🏿', '🖐', '🖐🏻', '🖐🏼', '🖐🏽', '🖐🏾', '🖐🏿', '✋', '✋🏻', '✋🏼', '✋🏽', '✋🏾', '✋🏿', '👌', '👌🏻', '👌🏼', '👌🏽', '👌🏾', '👌🏿', '👍', '👍🏻', '👍🏼', '👍🏽', '👍🏾', '👍🏿', '👎', '👎🏻', '👎🏼', '👎🏽', '👎🏾', '👎🏿', '✊', '✊🏻', '✊🏼', '✊🏽', '✊🏾', '✊🏿', '👊', '👊🏻', '👊🏼', '👊🏽', '👊🏾', '👊🏿', '🤛', '🤛🏻', '🤛🏼', '🤛🏽', '🤛🏾', '🤛🏿', '🤜', '🤜🏻', '🤜🏼', '🤜🏽', '🤜🏾', '🤜🏿', '🤚', '🤚🏻', '🤚🏼', '🤚🏽', '🤚🏾', '🤚🏿', '👋', '👋🏻', '👋🏼', '👋🏽', '👋🏾', '👋🏿', '👏', '👏🏻', '👏🏼', '👏🏽', '👏🏾', '👏🏿', '✍', '✍🏻', '✍🏼', '✍🏽', '✍🏾', '✍🏿', '👐', '👐🏻', '👐🏼', '👐🏽', '👐🏾', '👐🏿', '🙌', '🙌🏻', '🙌🏼', '🙌🏽', '🙌🏾', '🙌🏿', '🙏', '🙏🏻', '🙏🏼', '🙏🏽', '🙏🏾', '🙏🏿', '🤝', '🤝🏻', '🤝🏼', '🤝🏽', '🤝🏾', '🤝🏿', '💅', '💅🏻', '💅🏼', '💅🏽', '💅🏾', '💅🏿', '👂', '👂🏻', '👂🏼', '👂🏽', '👂🏾', '👂🏿', '👃', '👃🏻', '👃🏼', '👃🏽', '👃🏾', '👃🏿', '👣', '👀', '👁', '👁‍🗨', '👅', '👄', '💋', '💘', '❤', '💓', '💔', '💕', '💖', '💗', '💙', '💚', '💛', '💜', '🖤', '💝', '💞', '💟', '❣', '💌', '💤', '💢', '💣', '💥', '💦', '💨', '💫', '💬', '🗨', '🗯', '💭', '🕳', '👓', '🕶', '👔', '👕', '👖', '👗', '👘', '👙', '👚', '👛', '👜', '👝', '🛍', '🎒', '👞', '👟', '👠', '👡', '👢', '👑', '👒', '🎩', '🎓', '⛑', '📿', '💄', '💍', '💎', '🐵', '🐒', '🦍', '🐶', '🐕', '🐩', '🐺', '🦊', '🐱', '🐈', '🦁', '🐯', '🐅', '🐆', '🐴', '🐎', '🦌', '🦄', '🐮', '🐂', '🐃', '🐄', '🐷', '🐖', '🐗', '🐽', '🐏', '🐑', '🐐', '🐪', '🐫', '🐘', '🦏', '🐭', '🐁', '🐀', '🐹', '🐰', '🐇', '🐿', '🦇', '🐻', '🐨', '🐼', '🐾', '🦃', '🐔', '🐓', '🐣', '🐤', '🐥', '🐦', '🐧', '🕊', '🦅', '🦆', '🦉', '🐸', '🐊', '🐢', '🦎', '🐍', '🐲', '🐉', '🐳', '🐋', '🐬', '🐟', '🐠', '🐡', '🦈', '🐙', '🐚', '🦀', '🦐', '🦑', '🦋', '🐌', '🐛', '🐜', '🐝', '🐞', '🕷', '🕸', '🦂', '💐', '🌸', '💮', '🏵', '🌹', '🥀', '🌺', '🌻', '🌼', '🌷', '🌱', '🌲', '🌳', '🌴', '🌵', '🌾', '🌿', '☘', '🍀', '🍁', '🍂', '🍃', '🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🍎', '🍏', '🍐', '🍑', '🍒', '🍓', '🥝', '🍅', '🥑', '🍆', '🥔', '🥕', '🌽', '🌶', '🥒', '🍄', '🥜', '🌰', '🍞', '🥐', '🥖', '🥞', '🧀', '🍖', '🍗', '🥓', '🍔', '🍟', '🍕', '🌭', '🌮', '🌯', '🥙', '🥚', '🍳', '🥘', '🍲', '🥗', '🍿', '🍱', '🍘', '🍙', '🍚', '🍛', '🍜', '🍝', '🍠', '🍢', '🍣', '🍤', '🍥', '🍡', '🍦', '🍧', '🍨', '🍩', '🍪', '🎂', '🍰', '🍫', '🍬', '🍭', '🍮', '🍯', '🍼', '🥛', '☕', '🍵', '🍶', '🍾', '🍷', '🍸', '🍹', '🍺', '🍻', '🥂', '🥃', '🍽', '🍴', '🥄', '🔪', '🏺', '🌍', '🌎', '🌏', '🌐', '🗺', '🗾', '🏔', '⛰', '🌋', '🗻', '🏕', '🏖', '🏜', '🏝', '🏞', '🏟', '🏛', '🏗', '🏘', '🏙', '🏚', '🏠', '🏡', '🏢', '🏣', '🏤', '🏥', '🏦', '🏨', '🏩', '🏪', '🏫', '🏬', '🏭', '🏯', '🏰', '💒', '🗼', '🗽', '⛪', '🕌', '🕍', '⛩', '🕋', '⛲', '⛺', '🌁', '🌃', '🌄', '🌅', '🌆', '🌇', '🌉', '♨', '🌌', '🎠', '🎡', '🎢', '💈', '🎪', '🎭', '🖼', '🎨', '🎰', '🚂', '🚃', '🚄', '🚅', '🚆', '🚇', '🚈', '🚉', '🚊', '🚝', '🚞', '🚋', '🚌', '🚍', '🚎', '🚐', '🚑', '🚒', '🚓', '🚔', '🚕', '🚖', '🚗', '🚘', '🚙', '🚚', '🚛', '🚜', '🚲', '🛴', '🛵', '🚏', '🛣', '🛤', '⛽', '🚨', '🚥', '🚦', '🚧', '🛑', '⚓', '⛵', '🛶', '🚤', '🛳', '⛴', '🛥', '🚢', '✈', '🛩', '🛫', '🛬', '💺', '🚁', '🚟', '🚠', '🚡', '🚀', '🛰', '🛎', '🚪', '🛌', '🛏', '🛋', '🚽', '🚿', '🛀', '🛀🏻', '🛀🏼', '🛀🏽', '🛀🏾', '🛀🏿', '🛁', '⌛', '⏳', '⌚', '⏰', '⏱', '⏲', '🕰', '🕛', '🕧', '🕐', '🕜', '🕑', '🕝', '🕒', '🕞', '🕓', '🕟', '🕔', '🕠', '🕕', '🕡', '🕖', '🕢', '🕗', '🕣', '🕘', '🕤', '🕙', '🕥', '🕚', '🕦', '🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘', '🌙', '🌚', '🌛', '🌜', '🌡', '☀', '🌝', '🌞', '⭐', '🌟', '🌠', '☁', '⛅', '⛈', '🌤', '🌥', '🌦', '🌧', '🌨', '🌩', '🌪', '🌫', '🌬', '🌀', '🌈', '🌂', '☂', '☔', '⛱', '⚡', '❄', '☃', '⛄', '☄', '🔥', '💧', '🌊', '🎃', '🎄', '🎆', '🎇', '✨', '🎈', '🎉', '🎊', '🎋', '🎍', '🎎', '🎏', '🎐', '🎑', '🎀', '🎁', '🎗', '🎟', '🎫', '🎖', '🏆', '🏅', '🥇', '🥈', '🥉', '⚽', '⚾', '🏀', '🏐', '🏈', '🏉', '🎾', '🎱', '🎳', '🏏', '🏑', '🏒', '🏓', '🏸', '🥊', '🥋', '🥅', '🎯', '⛳', '⛸', '🎣', '🎽', '🎿', '🎮', '🕹', '🎲', '♠', '♥', '♦', '♣', '🃏', '🀄', '🎴', '🔇', '🔈', '🔉', '🔊', '📢', '📣', '📯', '🔔', '🔕', '🎼', '🎵', '🎶', '🎙', '🎚', '🎛', '🎤', '🎧', '📻', '🎷', '🎸', '🎹', '🎺', '🎻', '🥁', '📱', '📲', '☎', '📞', '📟', '📠', '🔋', '🔌', '💻', '🖥', '🖨', '⌨', '🖱', '🖲', '💽', '💾', '💿', '📀', '🎥', '🎞', '📽', '🎬', '📺', '📷', '📸', '📹', '📼', '🔍', '🔎', '🔬', '🔭', '📡', '🕯', '💡', '🔦', '🏮', '📔', '📕', '📖', '📗', '📘', '📙', '📚', '📓', '📒', '📃', '📜', '📄', '📰', '🗞', '📑', '🔖', '🏷', '💰', '💴', '💵', '💶', '💷', '💸', '💳', '💹', '💱', '💲', '✉', '📧', '📨', '📩', '📤', '📥', '📦', '📫', '📪', '📬', '📭', '📮', '🗳', '✏', '✒', '🖋', '🖊', '🖌', '🖍', '📝', '💼', '📁', '📂', '🗂', '📅', '📆', '🗒', '🗓', '📇', '📈', '📉', '📊', '📋', '📌', '📍', '📎', '🖇', '📏', '📐', '✂', '🗃', '🗄', '🗑', '🔒', '🔓', '🔏', '🔐', '🔑', '🗝', '🔨', '⛏', '⚒', '🛠', '🗡', '⚔', '🔫', '🏹', '🛡', '🔧', '🔩', '⚙', '🗜', '⚗', '⚖', '🔗', '⛓', '💉', '💊', '🚬', '⚰', '⚱', '🗿', '🛢', '🔮', '🛒', '🏧', '🚮', '🚰', '♿', '🚹', '🚺', '🚻', '🚼', '🚾', '🛂', '🛃', '🛄', '🛅', '⚠', '🚸', '⛔', '🚫', '🚳', '🚭', '🚯', '🚱', '🚷', '📵', '🔞', '☢', '☣', '⬆', '↗', '➡', '↘', '⬇', '↙', '⬅', '↖', '↕', '↔', '↩', '↪', '⤴', '⤵', '🔃', '🔄', '🔙', '🔚', '🔛', '🔜', '🔝', '🛐', '⚛', '🕉', '✡', '☸', '☯', '✝', '☦', '☪', '☮', '🕎', '🔯', '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓', '⛎', '🔀', '🔁', '🔂', '▶', '⏩', '⏭', '⏯', '◀', '⏪', '⏮', '🔼', '⏫', '🔽', '⏬', '⏸', '⏹', '⏺', '⏏', '🎦', '🔅', '🔆', '📶', '📳', '📴', '♻', '📛', '⚜', '🔰', '🔱', '⭕', '✅', '☑', '✔', '✖', '❌', '❎', '➕', '➖', '➗', '➰', '➿', '〽', '✳', '✴', '❇', '‼', '⁉', '❓', '❔', '❕', '❗', '〰', '©', '®', '™', '#️⃣', '*️⃣', '0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '💯', '🔠', '🔡', '🔢', '🔣', '🔤', '🅰', '🆎', '🅱', '🆑', '🆒', '🆓', 'ℹ', '🆔', 'Ⓜ', '🆕', '🆖', '🅾', '🆗', '🅿', '🆘', '🆙', '🆚', '🈁', '🈂', '🈷', '🈶', '🈯', '🉐', '🈹', '🈚', '🈲', '🉑', '🈸', '🈴', '🈳', '㊗', '㊙', '🈺', '🈵', '▪', '▫', '◻', '◼', '◽', '◾', '⬛', '⬜', '🔶', '🔷', '🔸', '🔹', '🔺', '🔻', '💠', '🔘', '🔲', '🔳', '⚪', '⚫', '🔴', '🔵', '🏁', '🚩', '🎌', '🏴', '🏳', '🇦🇨', '🇦🇩', '🇦🇪', '🇦🇫', '🇦🇬', '🇦🇮', '🇦🇱', '🇦🇲', '🇦🇴', '🇦🇶', '🇦🇷', '🇦🇸', '🇦🇹', '🇦🇺', '🇦🇼', '🇦🇽', '🇦🇿', '🇧🇦', '🇧🇧', '🇧🇩', '🇧🇪', '🇧🇫', '🇧🇬', '🇧🇭', '🇧🇮', '🇧🇯', '🇧🇱', '🇧🇲', '🇧🇳', '🇧🇴', '🇧🇶', '🇧🇷', '🇧🇸', '🇧🇹', '🇧🇻', '🇧🇼', '🇧🇾', '🇧🇿', '🇨🇦', '🇨🇨', '🇨🇩', '🇨🇫', '🇨🇬', '🇨🇭', '🇨🇮', '🇨🇰', '🇨🇱', '🇨🇲', '🇨🇳', '🇨🇴', '🇨🇵', '🇨🇷', '🇨🇺', '🇨🇻', '🇨🇼', '🇨🇽', '🇨🇾', '🇨🇿', '🇩🇪', '🇩🇬', '🇩🇯', '🇩🇰', '🇩🇲', '🇩🇴', '🇩🇿', '🇪🇦', '🇪🇨', '🇪🇪', '🇪🇬', '🇪🇭', '🇪🇷', '🇪🇸', '🇪🇹', '🇪🇺', '🇫🇮', '🇫🇯', '🇫🇰', '🇫🇲', '🇫🇴', '🇫🇷', '🇬🇦', '🇬🇧', '🇬🇩', '🇬🇪', '🇬🇫', '🇬🇬', '🇬🇭', '🇬🇮', '🇬🇱', '🇬🇲', '🇬🇳', '🇬🇵', '🇬🇶', '🇬🇷', '🇬🇸', '🇬🇹', '🇬🇺', '🇬🇼', '🇬🇾', '🇭🇰', '🇭🇲', '🇭🇳', '🇭🇷', '🇭🇹', '🇭🇺', '🇮🇨', '🇮🇩', '🇮🇪', '🇮🇱', '🇮🇲', '🇮🇳', '🇮🇴', '🇮🇶', '🇮🇷', '🇮🇸', '🇮🇹', '🇯🇪', '🇯🇲', '🇯🇴', '🇯🇵', '🇰🇪', '🇰🇬', '🇰🇭', '🇰🇮', '🇰🇲', '🇰🇳', '🇰🇵', '🇰🇷', '🇰🇼', '🇰🇾', '🇰🇿', '🇱🇦', '🇱🇧', '🇱🇨', '🇱🇮', '🇱🇰', '🇱🇷', '🇱🇸', '🇱🇹', '🇱🇺', '🇱🇻', '🇱🇾', '🇲🇦', '🇲🇨', '🇲🇩', '🇲🇪', '🇲🇫', '🇲🇬', '🇲🇭', '🇲🇰', '🇲🇱', '🇲🇲', '🇲🇳', '🇲🇴', '🇲🇵', '🇲🇶', '🇲🇷', '🇲🇸', '🇲🇹', '🇲🇺', '🇲🇻', '🇲🇼', '🇲🇽', '🇲🇾', '🇲🇿', '🇳🇦', '🇳🇨', '🇳🇪', '🇳🇫', '🇳🇬', '🇳🇮', '🇳🇱', '🇳🇴', '🇳🇵', '🇳🇷', '🇳🇺', '🇳🇿', '🇴🇲', '🇵🇦', '🇵🇪', '🇵🇫', '🇵🇬', '🇵🇭', '🇵🇰', '🇵🇱', '🇵🇲', '🇵🇳', '🇵🇷', '🇵🇸', '🇵🇹', '🇵🇼', '🇵🇾', '🇶🇦', '🇷🇪', '🇷🇴', '🇷🇸', '🇷🇺', '🇷🇼', '🇸🇦', '🇸🇧', '🇸🇨', '🇸🇩', '🇸🇪', '🇸🇬', '🇸🇭', '🇸🇮', '🇸🇯', '🇸🇰', '🇸🇱', '🇸🇲', '🇸🇳', '🇸🇴', '🇸🇷', '🇸🇸', '🇸🇹', '🇸🇻', '🇸🇽', '🇸🇾', '🇸🇿', '🇹🇦', '🇹🇨', '🇹🇩', '🇹🇫', '🇹🇬', '🇹🇭', '🇹🇯', '🇹🇰', '🇹🇱', '🇹🇲', '🇹🇳', '🇹🇴', '🇹🇷', '🇹🇹', '🇹🇻', '🇹🇼', '🇹🇿', '🇺🇦', '🇺🇬', '🇺🇲', '🇺🇸', '🇺🇾', '🇺🇿', '🇻🇦', '🇻🇨', '🇻🇪', '🇻🇬', '🇻🇮', '🇻🇳', '🇻🇺', '🇼🇫', '🇼🇸', '🇽🇰', '🇾🇪', '🇾🇹', '🇿🇦', '🇿🇲', '🇿🇼']
+
+    function random_emoji() {
+      return emojis[Math.floor(Math.random() * emojis.length)]
+    }
 
     function App(interval) {
-      var interval = Math.max((interval || 0), MIN_PRODUCER_INTERVAL);
+      var interval = Math.max((interval || 0), MIN_PRODUCER_INTERVAL)
 
-      let $clock                 = $( '#app-clock' );
-      let $consume_max_in_flight = $( 'input[name="app-consume-max-in-flight"]' );
-      let $consume_action        = $( 'input[name="app-consume-action"]' );
-      let $consume_read          = $( '#app-consumer-read' );
-      let $queue_switch          = $( '#app-queue-switch' );
-      let $clock_switch          = $( '#app-clock-switch' );
-      var timer               = null;
-      var timer_running       = false;
-      var start_at            = null;
-      var last_clock_pause_at = 0;
-      var last_timer_pause_at = null;
-      var max_in_flight       = null;
-      var read_action         = null;
-      var sync_lock           = 0;
-      var self = this;
+      let $clock                 = $( '#app-clock' )
+      let $consume_max_in_flight = $( 'input[name="app-consume-max-in-flight"]' )
+      let $consume_action        = $( 'input[name="app-consume-action"]' )
+      let $consume_read          = $( '#app-consumer-read' )
+      let $queue_switch          = $( '#app-queue-switch' )
+      let $clock_switch          = $( '#app-clock-switch' )
+      var timer               = null
+      var timer_running       = false
+      var start_at            = null
+      var last_clock_pause_at = 0
+      var last_timer_pause_at = null
+      var max_in_flight       = null
+      var read_action         = null
+      var sync_lock           = 0
+      var self = this
 
       function highlight_queue_messages() {
         if (read_action == 'read') {
-          queue.highlight_read_messages(max_in_flight);
-          return;
+          queue.highlight_read_messages(max_in_flight)
+          return
         }
         if (read_action == 'claim') {
-          queue.highlight_claim_messages(max_in_flight);
-          return;
+          queue.highlight_claim_messages(max_in_flight)
+          return
         }
       }
       function start_clock() {
         if (++sync_lock > 1) {
-          sync_lock--;
-          return;
+          sync_lock--
+          return
         }
 
         if (start_at == null) {
-          start_at = Date.now();
+          start_at = Date.now()
         }
 
-        timer_running = true;
+        timer_running = true
 
         if (timer == null) {
           timer = setInterval(function() {
             if (!timer_running) {
-              return;
+              return
             }
 
-            var escaped = Math.trunc((Date.now() - start_at) / 1000);
-            var ts      = `000${escaped}`.slice(-4);
+            var escaped = Math.trunc((Date.now() - start_at) / 1000)
+            var ts      = `000${escaped}`.slice(-4)
 
-            $clock.text(ts);
+            $clock.text(ts)
 
-            producer.push(ts);
+            producer.push(ts)
           }, interval)
         }
         sync_lock--
       }
       function stop_clock() {
-        timer_running = false;
+        timer_running = false
 
-        last_clock_pause_at = parseInt($clock.text());
+        last_clock_pause_at = parseInt($clock.text())
       }
       this.init = function() {
         // consume_max_in_flight
         {
-          var option = $consume_max_in_flight.filter(':checked');
+          var option = $consume_max_in_flight.filter(':checked')
           if (option.length) {
-            max_in_flight = option.val();
+            max_in_flight = option.val()
           }
         }
         // consume_action
         {
-          var option = $consume_action.filter( ':checked' );
+          var option = $consume_action.filter( ':checked' )
           if (option.length) {
-            read_action = option.val();
+            read_action = option.val()
           }
         }
-        highlight_queue_messages();
+        highlight_queue_messages()
 
         // add onread event
         consumer.on.read(function() {
-          highlight_queue_messages();
+          highlight_queue_messages()
         })
         // change clock_switch checkbox
         $clock_switch.click(function() {
@@ -206,27 +213,27 @@
             $clock_switch.parent().find('label')
               .addClass('btn-warning')
               .removeClass('btn-info')
-              .html(`<small><i class="bi bi-pause-fill"></i></small>`);
+              .html(`<small><i class="bi bi-pause-fill"></i></small>`)
 
             if (start_at == null) {
-              start_at = Date.now();
+              start_at = Date.now()
             } else {
-              start_at = Date.now() - (last_clock_pause_at + 1) *1e3;
+              start_at = Date.now() - (last_clock_pause_at + 1) *1e3
             }
-            start_clock();
+            start_clock()
 
-            $queue_switch.attr('disabled', false);
+            $queue_switch.attr('disabled', false)
           } else {
             // pause
             $clock_switch.parent().find('label')
               .addClass('btn-info')
               .removeClass('btn-warning')
-              .html(`<small><i class="bi bi-play-fill"></i></small>`);
-            $queue_switch.attr('disabled', true);
+              .html(`<small><i class="bi bi-play-fill"></i></small>`)
+            $queue_switch.attr('disabled', true)
 
-            stop_clock();
+            stop_clock()
           }
-        });
+        })
         // change queue switch checkbox
         $queue_switch.click(function() {
           if (this.checked) {
@@ -234,56 +241,56 @@
           } else {
             producer.stop()
           }
-        });
+        })
         // click read / claim button
         $consume_read.click(function() {
-          console.log(max_in_flight, read_action);
-          let read_proc = consumer[read_action];
-          read_proc(max_in_flight);
-        });
+          console.log(max_in_flight, read_action)
+          let read_proc = consumer[read_action]
+          read_proc(max_in_flight)
+        })
         // change max-in-flight radio box
         $consume_max_in_flight.change(function(){
-          var option = $consume_max_in_flight.filter(':checked');
-          max_in_flight = option.val();
+          var option = $consume_max_in_flight.filter(':checked')
+          max_in_flight = option.val()
 
-          highlight_queue_messages();
-        });
+          highlight_queue_messages()
+        })
         // change read-action radio box
         $consume_action.change(function(){
-          var option = $consume_action.filter(':checked');
-          read_action = option.val();
+          var option = $consume_action.filter(':checked')
+          read_action = option.val()
 
-          highlight_queue_messages();
-        });
+          highlight_queue_messages()
+        })
       }
       this.current_timestamp = function() {
-        return $clock.text();
+        return $clock.text()
       }
 
-      return this;
+      return this
     }
 
     function EventLog() {
-      var $component = $(`#eventlog ul[role="eventlog"]`);
-      var size = 0;
+      var $component = $(`#eventlog ul[role="eventlog"]`)
+      var size = 0
 
       this.add_messages = function(...log) {
-        let index = size + 1;
+        let index = size + 1
 
-        var list_item_html = [];
+        var list_item_html = []
         for (const r of log) {
-          let [body, action] = r;
+          let [body, action] = r
           if (action == "ack") {
-            list_item_html.push(`<li class="list-group-item list-group-item-primary py-1 px-2 text-nowrap"><small>${body}</small></li>`);
+            list_item_html.push(`<li class="list-group-item list-group-item-primary py-1 px-2 text-nowrap"><small>${body}</small></li>`)
           } else if (action == "skip") {
-            list_item_html.push(`<li class="list-group-item list-group-item-secondary py-1 px-2 text-nowrap"><small>${body}</small></li>`);
+            list_item_html.push(`<li class="list-group-item list-group-item-secondary py-1 px-2 text-nowrap"><small>${body}</small></li>`)
           } else {
-            throw new Error(`unknown action ${action}`);
+            throw new Error(`unknown action ${action}`)
           }
         }
 
-        let timestamp = app.current_timestamp();
-        let list_item_html_final = list_item_html.join("");
+        let timestamp = app.current_timestamp()
+        let list_item_html_final = list_item_html.join("")
         $component.append(`<li class="list-group-item px-2">
           <div class="card">
             <div class="card-header py-1">${index}
@@ -297,322 +304,322 @@
               </ul>
             </div>
           </div>
-        </li>`);
+        </li>`)
 
-        size++;
+        size++
       }
 
-      return this;
+      return this
     }
 
     function Sink() {
-      var $component = $(`#sink ul[role="sink"]`);
-      var size = 0;
+      var $component = $(`#sink ul[role="sink"]`)
+      var size = 0
 
       this.push = function(id, body) {
-        let store_id = `store-${id}`;
+        let store_id = `store-${id}`
         // exists?
         if ($(`#${store_id}`).length > 0) {
-          return;
+          return
         }
 
-        $component.append(`<li id="sink-${id}" class="list-group-item list-group-item-secondary py-1">${body} <span class="badge text-bg-secondary"></span></li>`);
-        size++;
+        $component.append(`<li id="sink-${id}" class="list-group-item list-group-item-secondary py-1">${body} <span class="badge text-bg-secondary"></span></li>`)
+        size++
       }
     }
 
     function Queue() {
-      var $component          = $(`#queue ul[role="queue"]`);
-      var highlight_messages  = [];
-      var last_added_message  = null;
-      var last_read_messages  = [];
-      var last_claim_messages = [];
-      var last_deliverd_index = 0;
-      var last_claim_size     = 0;
-      var highlight_read_size = 0;
-      var size = 0;
+      var $component          = $(`#queue ul[role="queue"]`)
+      var highlight_messages  = []
+      var last_added_message  = null
+      var last_read_messages  = []
+      var last_claim_messages = []
+      var last_deliverd_index = 0
+      var last_claim_size     = 0
+      var highlight_read_size = 0
+      var size = 0
 
       function lag() {
-        return size - last_deliverd_index;
+        return size - last_deliverd_index
       }
       function max_read_range(count) {
-        count = Math.min(count, size - last_deliverd_index);
-        return [last_deliverd_index, last_deliverd_index + count, count];
+        count = Math.min(count, size - last_deliverd_index)
+        return [last_deliverd_index, last_deliverd_index + count, count]
       }
       function max_claim_range(count) {
-        count = Math.min(count, last_deliverd_index);
-        return [0, count, count];
+        count = Math.min(count, last_deliverd_index)
+        return [0, count, count]
       }
       function unset_highlight_messages() {
         if (highlight_messages.length > 0) {
           for (const id of highlight_messages) {
-            var $item = $(`#${id}`);
-            let index = $component.find(`#${id}`).index();
+            var $item = $(`#${id}`)
+            let index = $component.find(`#${id}`).index()
             if (index >= last_deliverd_index) {
               $item.addClass('list-group-item-light')
-                .removeClass('list-group-item-info');
+                .removeClass('list-group-item-info')
             } else if (index < last_claim_size) {
               $item.addClass('list-group-item-dark')
-                .removeClass('list-group-item-info');
+                .removeClass('list-group-item-info')
             } else {
               $item.addClass('list-group-item-secondary')
-                .removeClass('list-group-item-info');
+                .removeClass('list-group-item-info')
             }
           }
-          highlight_messages = [];
-          highlight_read_size = 0;
+          highlight_messages = []
+          highlight_read_size = 0
         }
       }
       this.highlight_read_messages = function(count) {
-        unset_highlight_messages();
-        let [offset, ubound, size] = max_read_range(count);
+        unset_highlight_messages()
+        let [offset, ubound, size] = max_read_range(count)
         for (var i = offset; i < ubound; i++) {
-          var item = $component.children('li').get(i);
+          var item = $component.children('li').get(i)
           if (item) {
-            var $item = $(item);
+            var $item = $(item)
             $item.addClass('list-group-item-info')
               .removeClass('list-group-item-light')
-              .removeClass('list-group-item-primary');
-            var id = $item.attr('id');
+              .removeClass('list-group-item-primary')
+            var id = $item.attr('id')
 
-            highlight_messages.push(id);
+            highlight_messages.push(id)
           }
         }
-        highlight_read_size = count;
+        highlight_read_size = count
       }
       this.highlight_claim_messages = function(count) {
-        unset_highlight_messages();
-        let [offset, ubound, size] = max_claim_range(count);
+        unset_highlight_messages()
+        let [offset, ubound, size] = max_claim_range(count)
         for (var i = offset; i < ubound; i++) {
-          var item = $component.children('li').get(i);
+          var item = $component.children('li').get(i)
           if (item) {
-            var $item = $(item);
+            var $item = $(item)
             $item.addClass('list-group-item-info')
               .removeClass('list-group-item-dark')
-              .removeClass('list-group-item-secondary');
-            var id = $item.attr('id');
+              .removeClass('list-group-item-secondary')
+            var id = $item.attr('id')
 
-            highlight_messages.push(id);
+            highlight_messages.push(id)
           }
         }
       }
       this.push = function(id, body) {
         if (last_added_message) {
           if (lag() > highlight_read_size) {
-            let last_id = last_added_message;
-            let $item = $(`#${last_id}`);
+            let last_id = last_added_message
+            let $item = $(`#${last_id}`)
             $item.addClass('list-group-item-light')
-              .removeClass('list-group-item-primary');
+              .removeClass('list-group-item-primary')
           }
         }
-        $component.append(`<li id="message-id-${id}" class="list-group-item list-group-item-primary py-1 d-flex justify-content-between">${body}<span class="badge text-bg-secondary"></span></li>`);
-        last_added_message = (`message-id-${id}`);
-        size++;
+        $component.append(`<li id="message-id-${id}" class="list-group-item list-group-item-primary py-1 d-flex justify-content-between">${body}<span class="badge text-bg-secondary"></span></li>`)
+        last_added_message = (`message-id-${id}`)
+        size++
 
         if (lag() <= highlight_read_size) {
-          var $item = $(`#${last_added_message}`);
+          var $item = $(`#${last_added_message}`)
           $item.addClass('list-group-item-info')
-            .removeClass('list-group-item-primary');
+            .removeClass('list-group-item-primary')
 
-          highlight_messages.push(last_added_message);
+          highlight_messages.push(last_added_message)
         }
       }
       this.del = function(...ids) {
         for (const id of ids) {
-          var $item = $(`#${id}`);
+          var $item = $(`#${id}`)
           if ($item.length) {
-            $item.remove();
-            size--;
-            last_deliverd_index--;
+            $item.remove()
+            size--
+            last_deliverd_index--
 
             if (last_deliverd_index < 0) {
-              last_deliverd_index = 0;
+              last_deliverd_index = 0
             }
           }
         }
       }
       this.read = function(count) {
         if (last_read_messages.length > 0) {
-          var prev_messages = last_read_messages;
-          // console.log(prev_messages);
+          var prev_messages = last_read_messages
+          // console.log(prev_messages)
           for (const id of prev_messages) {
-            var $item = $(`#${id}`);
+            var $item = $(`#${id}`)
             $item.addClass('list-group-item-secondary')
               .removeClass('list-group-item-light')
-              .removeClass('list-group-item-primary');
+              .removeClass('list-group-item-primary')
           }
-          last_read_messages = [];
+          last_read_messages = []
         }
 
         var read_ids = []
-        var messages = [];
-        let [offset, ubound, size] = max_read_range(count);
+        var messages = []
+        let [offset, ubound, size] = max_read_range(count)
         for (var i = offset; i < ubound; i++) {
-          var item = $component.children('li').get(i);
+          var item = $component.children('li').get(i)
           if (item) {
-            var $item = $(item);
+            var $item = $(item)
             $item.addClass('list-group-item-secondary')
               .removeClass('list-group-item-light')
-              .removeClass('list-group-item-primary');
-            var id      = $item.attr('id');
-            var content = $(item.firstChild).text();
-            read_ids.push(id);
-            messages.push([id, content]);
+              .removeClass('list-group-item-primary')
+            var id      = $item.attr('id')
+            var content = $(item.firstChild).text()
+            read_ids.push(id)
+            messages.push([id, content])
 
-            console.log("message::", id, content);
-            last_deliverd_index++;
+            console.log("message::", id, content)
+            last_deliverd_index++
           }
         }
-        last_read_messages = read_ids;
-        return messages;
+        last_read_messages = read_ids
+        return messages
       }
       this.claim = function(count) {
         if (last_claim_messages.length > 0) {
-          var prev_messages = last_claim_messages;
-          // console.log(prev_messages);
+          var prev_messages = last_claim_messages
+          // console.log(prev_messages)
           for (const id of prev_messages) {
-            var $item = $(`#${id}`);
+            var $item = $(`#${id}`)
             $item.addClass('list-group-item-dark')
-              .removeClass('list-group-item-secondary');
+              .removeClass('list-group-item-secondary')
           }
-          last_claim_messages = [];
+          last_claim_messages = []
         }
 
         var read_ids = []
-        var messages = [];
-        let [offset, ubound, size] = max_claim_range(count);
+        var messages = []
+        let [offset, ubound, size] = max_claim_range(count)
         for (var i = offset; i < ubound; i++) {
-          var item = $component.children('li').get(i);
+          var item = $component.children('li').get(i)
           if (item) {
-            var $item = $(item);
+            var $item = $(item)
             $item.addClass('list-group-item-dark')
-              .removeClass('list-group-item-secondary');
-            var id      = $item.attr('id');
-            var content = $(item.firstChild).text();
-            read_ids.push(id);
-            messages.push([id, content]);
+              .removeClass('list-group-item-secondary')
+            var id      = $item.attr('id')
+            var content = $(item.firstChild).text()
+            read_ids.push(id)
+            messages.push([id, content])
 
-            console.log("message::", id, content);
+            console.log("message::", id, content)
           }
         }
-        last_claim_size     = read_ids.length;
-        last_claim_messages = read_ids;
-        return messages;
+        last_claim_size     = read_ids.length
+        last_claim_messages = read_ids
+        return messages
       }
-      return this;
+      return this
     }
 
     function Consumer() {
-      var $component = $(`#consumer ul[role="consumer"]`);
-      var consumed_messages = [];
-      var size = 0;
-      var self = this;
-      var on_read_handler = [];
+      var $component = $(`#consumer ul[role="consumer"]`)
+      var consumed_messages = []
+      var size = 0
+      var self = this
+      var on_read_handler = []
 
       function add(id, body) {
-        let consume_id = `consumer-${id}`;
-        let $item = $component.append(`<li id="${consume_id}" class="list-group-item list-group-item-secondary">${body} <div class="text-end"><button type="button" class="btn btn-primary btn-sm mx-1" role="consumer" action="ack" message_id="${id}"><small>ACK</small></button><button type="button" class="btn btn-secondary btn-sm" role="consumer" action="skip"><small>skip</small></button></div></li>`);
+        let consume_id = `consumer-${id}`
+        let $item = $component.append(`<li id="${consume_id}" class="list-group-item list-group-item-secondary">${body} <div class="text-end"><button type="button" class="btn btn-primary btn-sm mx-1" role="consumer" action="ack" message_id="${id}"><small>ACK</small></button><button type="button" class="btn btn-secondary btn-sm" role="consumer" action="skip"><small>skip</small></button></div></li>`)
         // hide ack button
-        $item.find(`#${consume_id} button[role="consumer"]`).hide();
-        size++;
+        $item.find(`#${consume_id} button[role="consumer"]`).hide()
+        size++
 
         if (size == 1) {
-          activate_message();
+          activate_message()
         }
       }
       function activate_message() {
         if (size > 0) {
-          let $first = $component.find('li').first();
+          let $first = $component.find('li').first()
           if (!$first) {
-            return;
+            return
           }
           $first.addClass('list-group-item-light')
-            .removeClass('list-group-item-secondary');
+            .removeClass('list-group-item-secondary')
 
 
-          let $buttons = $first.find('button[role="consumer"]').show();
+          let $buttons = $first.find('button[role="consumer"]').show()
           console.log($buttons)
-          let $ack = $buttons.filter('[action=ack]');
+          let $ack = $buttons.filter('[action=ack]')
           console.log($ack)
           if ($ack) {
             $ack.click(function(){
-              let $this = $(this);
-              let $item = $this.parent().closest('li');
+              let $this = $(this)
+              let $item = $this.parent().closest('li')
               if ($item.length < 0 ) {
-                return;
+                return
               }
-              let message_id   = $this.attr("message_id");
-              let message_body = $($item[0].firstChild).text();
-              let consume_id   = $item.attr("id");
+              let message_id   = $this.attr("message_id")
+              let message_body = $($item[0].firstChild).text()
+              let consume_id   = $item.attr("id")
               if (message_id) {
                 self.ack(message_id, message_body)
               }
               // store to consumed_messages
-              consumed_messages.push([message_body, 'ack']);
+              consumed_messages.push([message_body, 'ack'])
               // remove this
-              self.del(consume_id);
-            });
+              self.del(consume_id)
+            })
           }
-          let $skip = $buttons.filter('[action=skip]');
+          let $skip = $buttons.filter('[action=skip]')
           if ($skip) {
             $skip.click(function(){
-              let $this = $(this);
-              let $item = $this.parent().closest('li');
+              let $this = $(this)
+              let $item = $this.parent().closest('li')
               if ($item.length < 0 ) {
-                return;
+                return
               }
-              let message_body = $($item[0].firstChild).text();
-              let consume_id   = $item.attr("id");
+              let message_body = $($item[0].firstChild).text()
+              let consume_id   = $item.attr("id")
               // store to consumed_messages
-              consumed_messages.push([message_body, 'skip']);
+              consumed_messages.push([message_body, 'skip'])
               // remove this
-              self.del(consume_id);
-            });
+              self.del(consume_id)
+            })
           }
         }
       }
       this.read = function(count) {
         var messages = queue.read(count)
         for (const m of messages) {
-          console.log(m);
-          let [id, body] = m;
-          add(id, body);
+          console.log(m)
+          let [id, body] = m
+          add(id, body)
         }
         for (const proc of on_read_handler) {
-          proc();
+          proc()
         }
       }
       this.claim = function(count) {
         var messages = queue.claim(count)
         for (const m of messages) {
-          console.log(m);
-          let [id, body] = m;
-          let consume_id = `consumer-${id}`;
+          console.log(m)
+          let [id, body] = m
+          let consume_id = `consumer-${id}`
           // exists?
           if ($(`#${consume_id}`).length > 0) {
-            continue;
+            continue
           }
 
-          add(id, body);
+          add(id, body)
         }
       }
       this.ack = function(id, body) {
-        sink.push(id, body);
-        queue.del(id);
+        sink.push(id, body)
+        queue.del(id)
 
       }
       this.del = function(consume_id) {
-        $(`#${consume_id}`)?.remove();
-        size--;
-        activate_message();
+        $(`#${consume_id}`)?.remove()
+        size--
+        activate_message()
 
         if (size == 0) {
-          self.flush();
+          self.flush()
         }
       }
       this.flush = function() {
-        eventlog.add_messages(...consumed_messages);
-        consumed_messages = [];
+        eventlog.add_messages(...consumed_messages)
+        consumed_messages = []
       }
       this.on = {
         read: function(handler) {
@@ -620,38 +627,39 @@
         }
       }
 
-      return this;
+      return this
     }
 
     function Producer(interval) {
-      var running = true;
-      var self = this;
+      var running = true
+      var self = this
 
       this.push = function(ts) {
         if (!running) {
-          return;
+          return
         }
 
-        var id = ts;
+        var id = ts
 
         // limit id
         if (id > 9999) {
           self.stop()
         }
-        queue.push(id, `${id} - message`);
+        let emoji = random_emoji()
+        queue.push(id, `${id} - ${emoji}`)
       }
       this.start = function() {
-        running = true;
+        running = true
       }
       this.stop = function() {
-        running = false;
+        running = false
       }
 
-      return this;
+      return this
     }
 
   </script>
-  <script type="text/htmlpreview">
+  <script>
     ;
     let app      = new App(1000)
     let eventlog = new EventLog()
@@ -664,40 +672,7 @@
 
     $( document ).ready(function() {
       app.init()
-    });
-  </script>
-  <script type="text/javascript">
-    ;
-    (function() {
-      const scripts = document.querySelectorAll('script[type="text/htmlpreview"]')
-      let inlineScripts = []
-      for (const script of scripts) {
-        let src = script.src; //Get absolute URL
-        if (src.length > 0) {
-          let content =
-            fetch(src, null, 0)
-              .then(function (res) {
-                if (!res.ok) throw new Error('Cannot load ' + url + ': ' + res.status + ' ' + res.statusText)
-                return res.text()
-              }).catch(function (error) {
-                throw error
-              })
-          inlineScripts.push(content)
-        } else {
-          script.removeAttribute('type')
-          inlineScripts.push(script.innerHTML)
-        }
-      }
-      Promise.all(inlineScripts).then(function (res) {
-        for (i = 0; i < res.length; ++i) {
-          let $script = document.createElement('script')
-          $script.innerHTML = res[i];
-          document.body.appendChild($script)
-        }
-        document.dispatchEvent(new Event('DOMContentLoaded', {bubbles: true, cancelable: true})) //Dispatch DOMContentLoaded event after loading all scripts
-      })
-
-    })()
+    })
   </script>
 </body>
 </html>
