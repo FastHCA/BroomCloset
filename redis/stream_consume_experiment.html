@@ -149,10 +149,10 @@
         }
       }
       function start_clock() {
-        if (sync_lock > 0) {
+        if (++sync_lock > 1) {
+          sync_lock--;
           return;
         }
-        sync_lock++
 
         if (start_at == null) {
           start_at = Date.now();
@@ -656,7 +656,7 @@
   </script>
   <script type="text/javascript">
     ;
-    $ = jQuery?.noConflict();
+    let initialized = 0;
 
     var app      = new App(1000);
     var eventlog = new EventLog();
@@ -665,10 +665,26 @@
     var consumer = new Consumer();
     var sink     = new Sink();
 
+    function init() {
+      if (++initialized > 1) {
+        initialized--
+        return
+      }
 
-    $( document ).ready(function() {
-      app.init()
-    });
+      $ = jQuery?.noConflict();
+
+      $( document ).ready(function() {
+        app.init()
+      });
+    }
+
+    if (document.readyState === "loading") {
+      // Loading hasn't finished yet
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      // `DOMContentLoaded` has already fired
+      init();
+    }
   </script>
 </body>
 </html>
