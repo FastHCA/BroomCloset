@@ -1,1 +1,1 @@
-Run it 🚀 [https://htmlpreview.github.io/?https://github.com/FastHCA/BroomCloset/blob/main/redis/stream_consume_experiment.html](https://htmlpreview.github.io/?https://github.com/FastHCA/BroomCloset/blob/main/redis/stream_consume_experiment.html)
+Run it 🚀 [https://htmlpreview.github.io/?https://github.com/FastHCA/BroomCloset/blob/main/redis/stream_consume_monkey.html](https://htmlpreview.github.io/?https://github.com/FastHCA/BroomCloset/blob/main/redis/stream_consume_monkey.html)
