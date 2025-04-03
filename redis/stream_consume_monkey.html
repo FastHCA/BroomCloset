@@ -355,7 +355,10 @@
           for (const id of highlight_messages) {
             var $item = $(`#${id}`)
             let index = $component.find(`#${id}`).index()
-            if (index >= last_deliverd_index) {
+            if (id == last_added_message) {
+              $item.addClass('list-group-item-primary')
+              .removeClass('list-group-item-info')
+            } else if (index >= last_deliverd_index) {
               $item.addClass('list-group-item-light')
                 .removeClass('list-group-item-info')
             } else if (index < last_claim_size) {
