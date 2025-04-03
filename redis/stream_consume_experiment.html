@@ -110,14 +110,9 @@
   </section>
 
 
-  <!-- <script type="text/htmlpreview" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js#//raw.githubusercontent.com"></script>
-  <script type="text/htmlpreview" src="https://code.jquery.com/jquery-3.7.1.slim.min.js#//raw.githubusercontent.com"></script> -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-  <script type="text/javascript">
-    console.log("document.readyState:", document.readyState)
-
+  <script type="text/htmlpreview" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/htmlpreview" src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script type="text/htmlpreview">
     const MIN_PRODUCER_INTERVAL = 1000;
 
 
@@ -656,44 +651,53 @@
     }
 
   </script>
+  <script type="text/htmlpreview">
+    ;
+    let app      = new App(1000)
+    let eventlog = new EventLog()
+    let producer = new Producer()
+    let queue    = new Queue()
+    let consumer = new Consumer()
+    let sink     = new Sink()
+
+    $ = jQuery.noConflict()
+
+    $( document ).ready(function() {
+      app.init()
+    });
+  </script>
   <script type="text/javascript">
     ;
-    let initialized = 0
-
-    var app      = null
-    var eventlog = null
-    var producer = null
-    var queue    = null
-    var consumer = null
-    var sink     = null
-
-    function init() {
-      if (++initialized > 1) {
-        initialized--
-        return
+    (function() {
+      const scripts = document.querySelectorAll('script[type="text/htmlpreview"]')
+      let inlineScripts = []
+      for (const script of scripts) {
+        let src = script.src; //Get absolute URL
+        if (src.length > 0) {
+          let content =
+            fetch(src, null, 0)
+              .then(function (res) {
+                if (!res.ok) throw new Error('Cannot load ' + url + ': ' + res.status + ' ' + res.statusText)
+                return res.text()
+              }).catch(function (error) {
+                throw error
+              })
+          inlineScripts.push(content)
+        } else {
+          script.removeAttribute('type')
+          inlineScripts.push(script.innerHTML)
+        }
       }
+      Promise.all(inlineScripts).then(function (res) {
+        for (i = 0; i < res.length; ++i) {
+          let $script = document.createElement('script')
+          $script.innerHTML = res[i];
+          document.body.appendChild($script)
+        }
+        document.dispatchEvent(new Event('DOMContentLoaded', {bubbles: true, cancelable: true})) //Dispatch DOMContentLoaded event after loading all scripts
+      })
 
-      // $ = jQuery.noConflict()
-
-      app      = new App(1000)
-      eventlog = new EventLog()
-      producer = new Producer()
-      queue    = new Queue()
-      consumer = new Consumer()
-      sink     = new Sink()
-
-      $( document ).ready(function() {
-        app.init()
-      });
-    }
-
-    if (document.readyState === "loading") {
-      // Loading hasn't finished yet
-      document.addEventListener("DOMContentLoaded", init);
-    } else {
-      // `DOMContentLoaded` has already fired
-      init();
-    }
+    })()
   </script>
 </body>
 </html>
