@@ -1,0 +1,20 @@
+@startuml valkey_iungo_adapter_component
+
+component "Valkey iungo Adapter" as IungoAdapter {
+  component "Keyspace Notification\nEvent Handler" as EventHandler
+  component "Keyspace Trigger Router" as TriggerRouter
+  component "Command Handler" as CommandHandler
+  component "iungo Adapter API" as IungoAPI
+
+  EventHandler .down.> TriggerRouter
+
+  CommandHandler .right.> TriggerRouter
+
+  CommandHandler .down.> IungoAPI
+}
+
+interface "Valkey Module" as ValkeyModule
+
+IungoAdapter .left.> ValkeyModule : use
+
+@enduml

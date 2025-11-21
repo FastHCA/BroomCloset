@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="796.5" height="346.5" viewBox="-0.5 -0.5 531 231" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- <svg width="100" height="100" viewBox="300 60 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+  <style>
+    text {
+      font-family: sans-serif,Verdana,Tahoma;
+    }
+
+    .service_name {
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    .text-xs {
+      font-weight: bold;
+      font-size: 5px;
+    }
+
+    .text-s {
+      font-weight: bold;
+      font-size: 7px;
+    }
+
+    .text-m {
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    .text-l {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    g.service:hover .highlight {
+      stroke: orange;
+    }
+
+    g.service:hover text.highlight {
+      stroke: none;
+      fill: orange;
+    }
+
+    g.service:hover .highlight-block {
+      fill: orange;
+    }
+
+    .glow-black {
+      filter: drop-shadow(0 0 2.5px black)
+    }
+  </style>
+
+  <rect fill="#fff" stroke="#000" x="0" y="0" width="530" height="230" />
+
+  <!-- Service <-> Redis  -->
+  <path d="m80 101 l61 0" fill="transparent" stroke="#666666" stroke-width="2" stroke-dasharray="8">
+    <animate
+      attributeName="stroke-dashoffset"
+      from="0"
+      to="-305"
+      dur="10s"
+      repeatCount="indefinite"/>
+  </path>
+  <path d="m80 105 l61 0" fill="transparent" stroke="lightgray" stroke-width="2" stroke-dasharray="8">
+    <animate
+      attributeName="stroke-dashoffset"
+      from="0"
+      to="305"
+      dur="10s"
+      repeatCount="indefinite"/>
+  </path>
+
+  <!-- Browser <-> Data Connect Center  -->
+  <path d="m442 104 l-48 0" fill="transparent" stroke="#999999" stroke-width="8" stroke-dasharray="0 12" stroke-linecap="round">
+    <animate
+      attributeName="stroke-dashoffset"
+      from="0"
+      to="-305"
+      dur="10s"
+      repeatCount="indefinite"/>
+  </path>
+
+  <!-- Service -->
+  <g transform="translate(10,105)">
+    <use xlink:href="#host" transform="scale(0.20) translate(-30,-140)" />
+
+    <text x="28" y="36" class="service_name highlight">Service</text>
+  </g>
+
+  <!-- Browser -->
+  <g transform="translate(440,110)">
+    <use xlink:href="#browser" transform="scale(0.08) translate(50,-500)" />
+
+    <text x="18" y="40" class="service_name highlight">Browser</text>
+  </g>
+
+
+  <!-- Redis + Change Key  -->
+  <g transform="translate(120,40)">
+    <rect fill="transparent" stroke="blue" x="0" y="0" width="290" height="140" stroke-dasharray="8 4 2 4 2 4">
+      <animate attributeType="CSS"
+        attributeName="stroke-dashoffset"
+        from="0"
+        to="860"
+        dur="100s"
+        repeatCount="indefinite"/>
+    </rect>
+
+    <path d="m145 65 l45 0" fill="transparent" stroke="lightgray" stroke-width="5" stroke-dasharray="3 2">
+      <animate
+        attributeName="stroke-dashoffset"
+        from="0"
+        to="300"
+        dur="10s"
+        repeatCount="indefinite"/>
+    </path>
+
+    <!-- SET foo -->
+    <g>
+      <path d="m20 0 a8 8 0 0 1 8 -8 l60 0 a8 8 0 0 1 8 8 l0 12 a8 8 0 0 1 -8 8 l-34 0 l-8 8 l-8 -8 l-10 0 a8 8 0 0 1 -8 -8z" fill="white" stroke="#999999" stroke-dasharray="1 2" visibility="hidden">
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.05; 0.225; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="stroke"
+          values=  "white;#999999; #999999; white; white"
+          keyTimes="0; 0.05;0.125; 0.225; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "1; 1  ; 0    ; 0"
+          keyTimes="0; 0.2; 0.225; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </path>
+      <g visibility="hidden">
+        <text x="28" y="10" font-size="12">SET foo</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.05; 0.2; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0   ; 1    ; 0  ; 0"
+          keyTimes="0; 0.05; 0.125; 0.2; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </g>
+
+      <g visibility="hidden">
+        <rect x="34" y="100" width="43" height="14" rx="7" fill="none" stroke="#cacaca" />
+        <text x="33" y="110.5" class="text-m">⚡</text>
+        <text x="46" y="109" class="text-s">SET foo</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.05; 0.25; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0    ; 1    ; 0   ; 1"
+          keyTimes="0; 0.075; 0.225; 0.25; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,5; 0,5; 56,-8; 56,-27; 56,-27"
+          keyTimes="0  ; 0.2; 0.225; 0.25  ; 1"
+          dur="20s"
+          repeatCount="indefinite" />
+      </g>
+    </g>
+
+    <!-- EXPIRE bar 5 -->
+    <g>
+      <path d="m20 0 a8 8 0 0 1 8 -8 l100 0 a8 8 0 0 1 8 8 l0 12 a8 8 0 0 1 -8 8 l-74 0 l-8 8 l-8 -8 l-10 0 a8 8 0 0 1 -8 -8z" fill="white" stroke="#999999" stroke-dasharray="1 2" visibility="hidden">
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.25; 0.425; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="stroke"
+          values=  "white;#999999; #999999; white; white"
+          keyTimes="0; 0.25;0.325; 0.425; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "1; 1  ; 0    ; 0"
+          keyTimes="0; 0.4; 0.425; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </path>
+      <g visibility="hidden">
+        <text x="28" y="10" font-size="12">EXPIRE bar 5</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.25; 0.4; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0   ; 1    ; 0  ; 0"
+          keyTimes="0; 0.25; 0.325; 0.4; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </g>
+
+      <g visibility="hidden">
+        <rect x="30" y="100" width="54" height="14" rx="7" fill="none" stroke="#cacaca" />
+        <text x="29" y="110.5" class="text-m">⚡</text>
+        <text x="42" y="109" class="text-s">EXPIRE bar</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.3; 0.5; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0    ; 1    ; 0  ; 1"
+          keyTimes="0; 0.325; 0.475; 0.5; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,5; 0,5 ; 60,-8; 60,-27; 60,-27"
+          keyTimes="0  ; 0.45; 0.475; 0.5   ; 1"
+          dur="20s"
+          repeatCount="indefinite" />
+      </g>
+    </g>
+
+    <!-- EXPIRED qux -->
+    <g>
+      <path d="m20 0 a8 8 0 0 1 8 -8 l100 0 a8 8 0 0 1 8 8 l0 12 a8 8 0 0 1 -8 8 l-74 0 l-8 8 l-8 -8 l-10 0 a8 8 0 0 1 -8 -8z" fill="white" stroke="#999999" stroke-dasharray="1 2" visibility="hidden">
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.5; 0.925; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="stroke"
+          values=  "white;#999999; #999999; white; white"
+          keyTimes="0; 0.5;0.825; 0.925; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "1; 1    ; 0    ; 0"
+          keyTimes="0; 0.9; 0.925; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </path>
+      <g visibility="hidden">
+        <text x="26" y="10" font-size="12">⚠️TTL qux</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.5; 0.9; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0  ; 1    ; 1    ; 0  ; 0"
+          keyTimes="0; 0.5; 0.575; 0.825; 0.9; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </g>
+      <!-- countdown -->
+      <g visibility="hidden">
+        <clipPath id="countdown-text">
+          <text x="112.5" y="10" font-size="11">5</text>
+          <text x="112.5" y="20" font-size="11">4</text>
+          <text x="112.5" y="30" font-size="11">3</text>
+          <text x="112.5" y="40" font-size="11">2</text>
+          <text x="112.5" y="50" font-size="11">1</text>
+          <text x="112.5" y="60" font-size="11">0</text>
+
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values=  "0,0; 0,0  ; 0,0  ; 0,-10; 0,-10; 0,-20; 0,-20; 0,-30; 0,-30; 0,-40; 0,-40; 0,-50; 0,-50"
+            keyTimes="0  ; 0.575; 0.615; 0.625; 0.665; 0.675; 0.715; 0.725; 0.765; 0.775; 0.815; 0.825; 1"
+            dur="20s"
+            repeatCount="indefinite" />
+        </clipPath>
+        <circle cx="115" cy="6" r="9" fill="none" stroke="#dedede" stroke-width="3" stroke-dasharray="56.6" stroke-dashoffset="0" transform="rotate(-90 115 6)">
+          <animate attributeType="CSS"
+            attributeName="visibility"
+            values="hidden;visible;hidden;hidden"
+            keyTimes="0; 0.575; 0.825; 1"
+            dur="20s"
+            repeatCount="indefinite"/>
+          <animate
+            attributeName="stroke-dashoffset"
+            values=  "0; 0    ; -56.5 ; -56.5"
+            keyTimes="0; 0.575; 0.825; 1"
+            dur="20s"
+            repeatCount="indefinite" />
+        </circle>
+        <circle cx="115" cy="6" r="6" clip-path="url(#countdown-text)" fill="#666666">
+        </circle>
+
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.575; 0.835; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </g>
+
+      <g visibility="hidden">
+        <rect x="28" y="100" width="60" height="14" rx="7" fill="none" stroke="#cacaca" />
+        <text x="27" y="110.5" class="text-m">⚡</text>
+        <text x="40" y="109" class="text-s">EXPIRED qux</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.825; 0.95; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0   ; 1    ; 0   ; 1"
+          keyTimes="0; 0.85; 0.925; 0.95; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,5; 0,5; 62,-8; 62,-27; 62,-27"
+          keyTimes="0  ; 0.9; 0.925; 0.95  ; 1"
+          dur="20s"
+          repeatCount="indefinite" />
+      </g>
+    </g>
+
+
+
+    <!-- set NOTIFY_GENERIC event -->
+    <!-- set NOTIFY_STRING event -->
+    <!-- set NOTIFY_EXPIRED event -->
+    <g>
+      <g visibility="hidden">
+        <text x="126" y="45" class="text-s" fill="#999999">NOTIFY_GENERIC</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.45; 0.625; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0.5 ; 1    ; 1  ; 1"
+          keyTimes="0; 0.45; 0.475; 0.625; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,0; 0,0 ; 0,0; 0,-10; 0,-10"
+          keyTimes="0  ; 0.45; 0.5; 0.51 ; 1"
+          dur="8s"
+          repeatCount="indefinite" />
+      </g>
+      <g visibility="hidden">
+        <text x="126" y="45" class="text-s" fill="#999999">NOTIFY_STRING</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.5; 0.675; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0  ; 1    ; 1  ; 1"
+          keyTimes="0; 0.5; 0.525; 0.675; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+      </g>
+      <g visibility="hidden">
+        <text x="126" y="45" class="text-s" fill="#999999">NOTIFY_EXPIRED</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.75; 0.925; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0   ; 1    ; 1    ; 1"
+          keyTimes="0; 0.75; 0.725; 0.925; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+      </g>
+
+
+      <g visibility="hidden">
+        <text x="180" y="58" class="text-m">⚡</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.45; 0.625; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0.5 ; 1  ; 1"
+          keyTimes="0; 0.45; 0.5; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,0; 0,0  ; -38,0; -38,0"
+          keyTimes="0  ; 0.45; 0.625; 1"
+          dur="8s"
+          repeatCount="indefinite" />
+      </g>
+      <g visibility="hidden">
+        <text x="180" y="58" class="text-m">⚡</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.5; 0.675; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0.5; 1   ; 1"
+          keyTimes="0; 0.5; 0.55; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,0; 0,0; -38,0; -38,0"
+          keyTimes="0  ; 0.5; 0.675; 1"
+          dur="8s"
+          repeatCount="indefinite" />
+      </g>
+      <g visibility="hidden">
+        <text x="180" y="58" class="text-m">⚡</text>
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.75; 0.925; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0.5  ; 1    ; 1"
+          keyTimes="0; 0.75; 0.8; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+        <animateTransform attributeName="transform"
+          type="translate"
+          values  ="0,0; 0,0  ; -38,0; -38,0"
+          keyTimes="0  ; 0.75; 0.925  ; 1"
+          dur="8s"
+          repeatCount="indefinite" />
+      </g>
+
+    </g>
+
+
+
+
+
+    <!-- Valkey Server -->
+    <g class="service" transform="translate(20,30)">
+      <rect class="highlight" fill="#cae9fa" stroke="none" x="1" y="1" width="65" height="55" rx="10" stroke-width="1px" />
+
+      <!-- Redis -->
+      <g class="service" transform="translate(-8,7)">
+        <!-- <use xlink:href="#redis_logo" transform="scale(0.65) translate(32,4)" /> -->
+        <use xlink:href="#valkey_logo" transform="scale(0.17) translate(-18,12)" />
+      </g>
+
+      <!-- Redis data animation -->
+      <g>
+        <line x1="-6" x2="8" y1="6"  y2="6"  stroke="#bbbbbb" stroke-width="3" stroke-linecap="round"></line>
+        <line x1="-6" x2="8" y1="10" y2="10" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round"></line>
+        <line x1="-6" x2="8" y1="14" y2="14" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+          <animateTransform attributeName="transform"
+            type="translate"
+            values  ="0,0; 0,0 ; 0,4 ; 0,4; 0,0; 0,0"
+            keyTimes="0  ; 0.31; 0.32; 0.4; 0.5; 1"
+            dur="20s"
+            repeatCount="indefinite" />
+        </line>
+        <line x1="-6" x2="8" y1="18" y2="18" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round" visibility="hidden">
+          <animate attributeType="CSS"
+            attributeName="visibility"
+            values="hidden;visible;hidden;visible;hidden;visible;hidden;hidden"
+            keyTimes="   0;  0.095;   0.2;   0.25;   0.4;   0.5;  0.825; 1"
+            dur="20s"
+            repeatCount="indefinite"/>
+          <animate attributeType="CSS"
+            attributeName="opacity"
+            values=  "0; 0    ; 1    ; 1  ; 0    ; 0"
+            keyTimes="0; 0.085; 0.135; 0.8; 0.825; 1"
+            dur="20s"
+            repeatCount="indefinite"/>
+          <animate attributeName="stroke"
+            values="#44c614; #44c614; #bbbbbb; #fcb000; #fcb000; #fcb000; #bbbbbb; #fd9e9e; #f64242; #bbbbbb"
+            keyTimes="    0;   0.185;     0.2;    0.25;   0.325;   0.375;     0.4;     0.5;   0.825; 1"
+            dur="20s"
+            repeatCount="indefinite"/>
+          <animateTransform attributeName="transform"
+            type="translate"
+            values  ="-12,0; -12,0; 0,0  ; 0,0; 0,0  ; -4,0; -4,-4; -4,-4; 0,-4 ; 0,-4; 0,0; 0,0"
+            keyTimes="0    ; 0.095; 0.125; 0.2; 0.295; 0.31; 0.325; 0.34 ; 0.355; 0.4 ; 0.5; 1"
+            dur="20s"
+            repeatCount="indefinite" />
+        </line>
+        <line x1="-6" x2="8" y1="22" y2="22" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+          <animate attributeType="CSS"
+            attributeName="stroke"
+            values="#5599ff; #5599ff; #5599ff; #bbbbbb; #bbbbbb"
+            keyTimes="    0;    0.05;   0.175;    0.25; 1"
+            dur="20s"
+            repeatCount="indefinite"/>
+          <animateTransform attributeName="transform"
+            type="translate"
+            values  ="0,-4; 0,-4 ; 0,0  ; 0,0  ; 0,-4 ; 0,-4"
+            keyTimes="0   ; 0.075; 0.085; 0.825; 0.845; 1"
+            dur="20s"
+            repeatCount="indefinite" />
+        </line>
+
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;visible;hidden;visible;hidden;hidden"
+          keyTimes="   0;   0.05;   0.2;   0.25;   0.4;    0.5;   0.9; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+        <animate attributeType="CSS"
+          attributeName="opacity"
+          values=  "0; 0   ; 1    ; 1    ; 0  ; 1    ; 1    ; 0  ; 1    ; 1    ; 0  ; 0"
+          keyTimes="0; 0.05; 0.125; 0.175; 0.2; 0.325; 0.375; 0.4; 0.575; 0.825; 0.9; 1"
+          dur="20s"
+          repeatCount="indefinite"/>
+      </g>
+
+      <!-- Redis iungo Adapter -->
+      <g transform="translate(58,26)">
+        <rect class="highlight" fill="#eeeeee" stroke="white" x="1" y="1" width="67" height="16" rx="8" stroke-width="1px">
+          <animate attributeName="stroke"
+            values="white;#f8c566;white;#f8c566;white;#f8c566;white;white"
+            keyTimes="0;0.225;0.255;0.475;0.505;0.925;0.955;1"
+            calcMode="discrete"
+            dur="20s"
+            repeatCount="indefinite"/>
+        </rect>
+        <circle class="highlight" cx="9" cy="9" r="8" fill="#f8c566" stroke="white" />
+
+        <g>
+          <!-- <circle cx="8" cy="7.4" r="4.7" /> -->
+          <use x="0" y="0" fill="#777777" xlink:href="#gear" transform="scale(0.65) translate(5.3,3.3)" />
+          <!-- <circle cx="8" cy="7.4" r="1.4" fill="red" /> -->
+          <animateTransform dur="3.3s" attributeName="transform" repeatCount="indefinite" type="rotate" from="0,8,7.4" to="360,8,7.4" />
+        </g>
+        <g>
+          <!-- <circle cx="12.6" cy="12.4" r="2.3" /> -->
+          <use x="0" y="0" fill="#999999" xlink:href="#gear" transform="scale(0.3) translate(34.9,33.2)" />
+          <!-- <circle cx="12.6" cy="12.4" r="0.7" fill="red" /> -->
+          <animateTransform dur="3.3s" attributeName="transform" repeatCount="indefinite" type="rotate" from="360,12.6,12.4" to="0,12.6,12.4" />
+        </g>
+
+        <!-- <text x="20" y="8" class="service_name highlight text-s">Change Key</text>
+        <text x="20" y="14" class="service_name highlight text-s">Processor</text> -->
+        <text x="20" y="11" class="highlight" font-size="6px" font-weight="bold">iungo Adapter</text>
+      </g>
+
+      <!-- <text x="21" y="66" class="service_name highlight">Redis</text> -->
+      <text x="18" y="66" class="service_name highlight">Valkey</text>
+    </g>
+
+    <!-- iungo -->
+    <g class="service" transform="translate(190,28)">
+      <rect class="highlight" fill="#f8dbbc" x="2" y="1" width="80" height="60" rx="8" />
+
+      <path d="m2 12 l0 -3 a8 8 0 0 1 8 -8 l64 0 a8 8 0 0 1 8 8 l0 3 z" fill="#7E7F9A" />
+
+      <rect class="highlight" fill="none" x="2" y="1" width="80" height="60" rx="8" stroke="#7E7F9A" stroke-width="2" />
+
+      <line x1="15" x2="20" y1="7" y2="7" stroke="#DCDFE5" stroke-width="4" stroke-linecap="round" />
+      <line x1="26" x2="31" y1="7" y2="7" stroke="#DCDFE5" stroke-width="4" stroke-linecap="round" />
+      <line x1="37" x2="42" y1="7" y2="7" stroke="#DCDFE5" stroke-width="4" stroke-linecap="round" />
+      <line x1="72" x2="75" y1="7" y2="7" stroke="#97A7B3" stroke-width="4" stroke-linecap="round" />
+
+      <g>
+        <line x1="17" x2="55" y1="22" y2="22" stroke="#a56368" stroke-width="10" style="transform-origin:cneter">
+          <animate attributeName="stroke"
+            values="#a56368;#EB9486;#a56368;#a56368"
+            keyTimes="0;0.25;0.8375;1"
+            calcMode="discrete"
+            dur="8s"
+            repeatCount="indefinite"/>
+          <animateTransform attributeName="transform"
+            type="translate"
+            additive="sum"
+            values="0,0;0,0;2,1;0,0;0,0"
+            keyTimes="0;0.2875;0.3125;0.3375;1"
+            dur="8s"
+            repeatCount="indefinite" />
+          <animateTransform attributeName="transform"
+            type="scale"
+            additive="sum"
+            values="1,1;1,1;0.95,0.95;1,1;1,1"
+            keyTimes="0;0.2875;0.3125;0.3375;1"
+            dur="8s"
+            repeatCount="indefinite" />
+        </line>
+        <line x1="17" x2="55" y1="34" y2="34" stroke="#EB9486" stroke-width="10">
+          <animate attributeName="stroke"
+            values="#EB9486;#a56368;#EB9486"
+            keyTimes="0;0.25;1"
+            calcMode="discrete"
+            dur="8s"
+            repeatCount="indefinite"/>
+        </line>
+        <line x1="17" x2="55" y1="46" y2="46" stroke="#9e555b" stroke-width="10">
+          <animate attributeName="stroke"
+            values="#a56368;#EB9486;#a56368"
+            keyTimes="0;0.85;1"
+            calcMode="discrete"
+            dur="8s"
+            repeatCount="indefinite"/>
+        </line>
+      </g>
+
+      <g visibility="hidden">
+        <rect class="highlight" fill="rgba(220,222,193,0.55)" x="2" y="1" width="80" height="60" rx="8" stroke="#7E7F9A" stroke-width="2" />
+
+        <g transform="translate(24,14)" >
+          <rect fill="#efefef" x="0" y="0" width="36" height="40" rx="3" stroke="#999999" stroke-width="0.5" />
+
+          <line x1="3" x2="19" y1="10" y2="10" stroke="#d9d9d9" stroke-width="4" />
+
+          <line x1="3" x2="15" y1="16" y2="16" stroke="#d9d9d9" stroke-width="4" />
+
+          <line x1="3" x2="21" y1="22" y2="22" stroke="#d9d9d9" stroke-width="4" />
+
+          <line x1="30" x2="32" y1="10" y2="10" stroke="#a56368" stroke-width="4" stroke-linecap="round" />
+          <circle cx="32" cy="10" r="1" fill="white" />
+
+          <line x1="30" x2="32" y1="16" y2="16" stroke="#cacaca" stroke-width="4" stroke-linecap="round">
+            <animate attributeName="stroke"
+              values="#cacaca;#cacaca;#a56368;#a56368"
+              keyTimes="0;0.4375;0.5;1"
+              dur="8s"
+              repeatCount="indefinite"/>
+          </line>
+          <circle cx="30" cy="16" r="1" fill="#626262">
+            <animate attributeName="fill"
+              values="#626262;#626262;white;white"
+              keyTimes="0;0.4375;0.5;1"
+              dur="8s"
+              repeatCount="indefinite"/>
+            <animate attributeName="cx"
+              values="30;30;32;32"
+              keyTimes="0;0.4375;0.5;1"
+              dur="8s"
+              repeatCount="indefinite"/>
+          </circle>
+
+          <line x1="30" x2="32" y1="22" y2="22" stroke="#cacaca" stroke-width="4" stroke-linecap="round">
+            <animate attributeName="stroke"
+              values="#cacaca;#cacaca;#a56368;#a56368"
+              keyTimes="0;0.5625;0.625;1"
+              dur="8s"
+              repeatCount="indefinite"/>
+          </line>
+          <circle cx="30" cy="22" r="1" fill="#626262">
+            <animate attributeName="fill"
+              values="#626262;#626262;white;white"
+              keyTimes="0;0.5625;0.625;1"
+              dur="8s"
+              repeatCount="indefinite"/>
+            <animate attributeName="cx"
+              values="30;30;32;32"
+              keyTimes="0;0.5625;0.625;1"
+              dur="8s"
+              repeatCount="indefinite"/>
+          </circle>
+
+          <rect x="12" y="32" width="9" height="6" rx="2" fill="#6c757d" />
+          <rect x="22" y="32" width="12" height="6" rx="2" fill="#0d6efd">
+            <animate attributeName="fill"
+              values="#0d6efd;#0d6efd;#0b5ed7;#0b5ed7"
+              keyTimes="0;0.6875;0.75;1"
+              calcMode="discrete"
+              dur="8s"
+              repeatCount="indefinite"/>
+            <animateTransform attributeName="transform"
+              type="translate"
+              additive="sum"
+              values="0,0;0,0;1,1.5;0,0;0,0"
+              keyTimes="0;0.6875;0.725;0.75;1"
+              dur="8s"
+              repeatCount="indefinite" />
+            <animateTransform attributeName="transform"
+              type="scale"
+              additive="sum"
+              values="1,1;1,1;0.96,0.96;1,1;1,1"
+              keyTimes="0;0.6875;0.725;0.75;1"
+              dur="8s"
+              repeatCount="indefinite" />
+          </rect>
+        </g>
+
+        <animate attributeType="CSS"
+          attributeName="visibility"
+          values="hidden;visible;hidden;hidden"
+          keyTimes="0; 0.35; 0.8375; 1"
+          dur="8s"
+          repeatCount="indefinite"/>
+      </g>
+
+
+      <!-- <circle cx="50" cy="36" r="2" />
+      <circle cx="40" cy="22" r="2" />
+      <circle cx="54" cy="30" r="2" />
+      <circle cx="54" cy="36" r="2" />
+      <circle cx="52" cy="49" r="2" />
+      <path fill="none" stroke="lightgrey" d="m50,36 s-8,-4 -10,-14 m0,0 s8,5 14,8 m0,0 l0,6 m0,0 l-2,13" /> -->
+      <g transform="translate(40,26)">
+        <path class="glow-black" d="m10 10 l4 4 l-1.2 0.4 l1 1.5 l-1 0.66 l-1.06 -1.56 l-1.2 1 z" fill="black" stroke="black" stroke-width="0">
+          <animateMotion
+            keyPoints="0;0    ;0.33;0.33;0.63  ;0.63;0.75  ;0.75 ;1   ;1"
+            keyTimes ="0;0.175;0.25;0.35;0.4375;0.5 ;0.5625;0.625;0.6875;1"
+            dur="8s"
+            repeatCount="indefinite"
+            path="m0,0 s-8,-4 -10,-14 m0,0 s8,5 14,8 m0,0 l0,6 m0,0 l-2,13" />
+        </path>
+      </g>
+
+      <text x="29" y="72" class="service_name highlight">iungo</text>
+    </g>
+  </g>
+
+
+
+
+
+
+
+
+
+  <defs>
+    <path id="gear" d="m14,9.3l0,-2.57l-1.575,-0.264c-0.117,-0.44 -0.292,-0.848 -0.496,-1.2l0.93,-1.285l-1.81,-1.84l-1.31,0.908c-0.38,-0.205 -0.79,-0.38 -1.196,-0.497l-0.259,-1.552l-2.568,0l-0.263,1.578c-0.437,0.117 -0.816,0.293 -1.196,0.497l-1.282,-0.905l-1.838,1.81l0.934,1.287c-0.2,0.38 -0.376,0.79 -0.493,1.228l-1.578,0.235l0,2.57l1.575,0.264c0.117,0.438 0.292,0.818 0.496,1.198l-0.93,1.315l1.809,1.813l1.312,-0.938c0.38,0.205 0.787,0.38 1.224,0.497l0.26,1.551l2.566,0l0.263,-1.578c0.408,-0.117 0.817,-0.293 1.196,-0.497l1.315,0.935l1.81,-1.812l-0.935,-1.315c0.203,-0.38 0.38,-0.76 0.495,-1.2l1.544,-0.23l0,-0.003zm-7,1.407c-1.488,0 -2.683,-1.2 -2.683,-2.69s1.225,-2.69 2.683,-2.69c1.458,0 2.683,1.198 2.683,2.69c0,1.49 -1.195,2.688 -2.683,2.688l0,0.002z" />
+
+    <svg id="redis_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="64"
+      viewBox="0 0 32 32" width="64">
+      <g transform="matrix(.848327 0 0 .848327 -7.883573 -9.449691)">
+        <use xlink:href="#B" fill="#a41e11" />
+        <path
+          d="M45.536 34.95c-2.013 1.05-12.44 5.337-14.66 6.494s-3.453 1.146-5.207.308-12.85-5.32-14.85-6.276-2.04-1.613-.077-2.382l15.332-5.936c2.332-.836 3.14-.867 5.126-.14S43.55 31.87 45.51 32.6s2.037 1.31.024 2.36z"
+          fill="#d82c20" />
+        <use xlink:href="#B" y="-6.218" fill="#a41e11" />
+        <use xlink:href="#C" fill="#d82c20" />
+        <path
+          d="M45.536 26.098c-2.013 1.05-12.44 5.337-14.66 6.495s-3.453 1.146-5.207.308-12.85-5.32-14.85-6.276c-1-.478-1.524-.88-1.524-1.26V21.55s14.447-3.145 16.78-3.982 3.14-.867 5.126-.14 13.853 2.868 15.814 3.587v3.76c0 .377-.452.8-1.477 1.324z"
+          fill="#a41e11" />
+        <use xlink:href="#C" y="-6.449" fill="#d82c20" />
+        <g fill="#fff">
+          <path
+            d="M29.096 20.712l-1.182-1.965-3.774-.34 2.816-1.016-.845-1.56 2.636 1.03 2.486-.814-.672 1.612 2.534.95-3.268.34zM22.8 24.624l8.74-1.342-2.64 3.872z" />
+          <ellipse cx="20.444" rx="4.672" ry="1.811" cy="21.402" />
+        </g>
+        <path d="M42.132 21.138l-5.17 2.042-.004-4.087z" fill="#7a0c00" />
+        <path d="M36.963 23.18l-.56.22-5.166-2.042 5.723-2.264z" fill="#ad2115" />
+      </g>
+      <defs>
+        <path id="B"
+          d="M45.536 38.764c-2.013 1.05-12.44 5.337-14.66 6.494s-3.453 1.146-5.207.308-12.85-5.32-14.85-6.276c-1-.478-1.524-.88-1.524-1.26v-3.813s14.447-3.145 16.78-3.982 3.14-.867 5.126-.14 13.853 2.868 15.814 3.587v3.76c0 .377-.452.8-1.477 1.324z" />
+        <path id="C"
+          d="M45.536 28.733c-2.013 1.05-12.44 5.337-14.66 6.494s-3.453 1.146-5.207.308-12.85-5.32-14.85-6.276-2.04-1.613-.077-2.382l15.332-5.935c2.332-.837 3.14-.867 5.126-.14s12.35 4.853 14.312 5.57 2.037 1.31.024 2.36z" />
+      </defs>
+    </svg>
+
+    <svg id="valkey_logo" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 512 512"><path d="m126.1 431.2-91.7-57.4V128.6L258.7 0l218.9 128.8v258L255.2 512 178 463.7V346.2L136.2 320V187l121.2-69.5 118.4 69.7v139.4L282 379.4v-56.1c28.1-10.8 48.3-38.6 48.3-71.5 0-42.3-33.5-76.3-74.3-76.3s-74.3 34-74.3 76.3c0 32.8 20.2 60.6 48.3 71.5v106.3l26.8 16.8 164.4-92.6V161.1L258.3 65.3l-167.5 96v181.3l35.3 22.1zM256 216.7c18.5 0 33.1 15.9 33.1 35.1 0 19.1-14.6 35.1-33.1 35.1s-33.1-15.9-33.1-35.1 14.6-35.1 33.1-35.1" style="fill-rule:evenodd;clip-rule:evenodd;fill:#123678"/></svg>
+
+    <svg id="host" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+      <rect x="238.345" y="105.931" style="fill:#464655;" width="35.31" height="370.759"/>
+      <path style="fill:#5B5D6E;" d="M512,467.862v17.655c0,4.875-3.953,8.828-8.828,8.828H8.828c-4.875,0-8.828-3.953-8.828-8.828
+        v-17.655c0-4.875,3.953-8.828,8.828-8.828h494.345C508.047,459.034,512,462.987,512,467.862z"/>
+      <path style="fill:#959CB3;" d="M502.465,123.586H9.535c-5.266,0-9.535-4.269-9.535-9.535V9.535C0,4.269,4.269,0,9.535,0h492.93
+        C507.731,0,512,4.269,512,9.535v104.516C512,119.317,507.731,123.586,502.465,123.586z"/>
+      <g>
+        <path style="fill:#707487;" d="M26.483,105.931L26.483,105.931c-4.875,0-8.828-3.953-8.828-8.828V26.483
+          c0-4.875,3.953-8.828,8.828-8.828l0,0c4.875,0,8.828,3.953,8.828,8.828v70.621C35.31,101.978,31.358,105.931,26.483,105.931z"/>
+        <path style="fill:#707487;" d="M485.517,105.931L485.517,105.931c-4.875,0-8.828-3.953-8.828-8.828V26.483
+          c0-4.875,3.953-8.828,8.828-8.828l0,0c4.875,0,8.828,3.953,8.828,8.828v70.621C494.345,101.978,490.392,105.931,485.517,105.931z"
+          />
+      </g>
+      <path style="fill:#5B5D6E;" d="M445.793,52.966H66.207c-7.313,0-13.241-5.929-13.241-13.241l0,0c0-7.313,5.929-13.241,13.241-13.241
+        h379.586c7.313,0,13.241,5.929,13.241,13.241l0,0C459.034,47.037,453.106,52.966,445.793,52.966z"/>
+      <g>
+        <circle style="fill:#C3E678;" cx="445.793" cy="39.724" r="13.241"/>
+        <circle style="fill:#C3E678;" cx="401.655" cy="39.724" r="13.241"/>
+      </g>
+      <g>
+        <circle style="fill:#464655;" cx="357.517" cy="39.724" r="13.241"/>
+        <circle style="fill:#464655;" cx="313.379" cy="39.724" r="13.241"/>
+        <circle style="fill:#464655;" cx="269.241" cy="39.724" r="13.241"/>
+      </g>
+      <g>
+        <path style="fill:#C7CFE2;" d="M300.138,97.103h150.069c4.875,0,8.828-3.953,8.828-8.828l0,0c0-4.875-3.953-8.828-8.828-8.828
+          H300.138c-4.875,0-8.828,3.953-8.828,8.828l0,0C291.31,93.151,295.263,97.103,300.138,97.103z"/>
+        <path style="fill:#C7CFE2;" d="M61.793,97.103h150.069c4.875,0,8.828-3.953,8.828-8.828l0,0c0-4.875-3.953-8.828-8.828-8.828
+          H61.793c-4.875,0-8.828,3.953-8.828,8.828l0,0C52.966,93.151,56.918,97.103,61.793,97.103z"/>
+      </g>
+      <circle style="fill:#00D2FF;" cx="256" cy="88.276" r="17.655"/>
+      <path style="fill:#959CB3;" d="M502.465,406.069H9.535C4.269,406.069,0,401.8,0,396.534V292.018c0-5.266,4.269-9.535,9.535-9.535
+        h492.93c5.266,0,9.535,4.269,9.535,9.535v104.516C512,401.8,507.731,406.069,502.465,406.069z"/>
+      <g>
+        <path style="fill:#707487;" d="M26.483,388.414L26.483,388.414c-4.875,0-8.828-3.953-8.828-8.828v-70.621
+          c0-4.875,3.953-8.828,8.828-8.828l0,0c4.875,0,8.828,3.953,8.828,8.828v70.621C35.31,384.461,31.358,388.414,26.483,388.414z"/>
+        <path style="fill:#707487;" d="M485.517,388.414L485.517,388.414c-4.875,0-8.828-3.953-8.828-8.828v-70.621
+          c0-4.875,3.953-8.828,8.828-8.828l0,0c4.875,0,8.828,3.953,8.828,8.828v70.621C494.345,384.461,490.392,388.414,485.517,388.414z"
+          />
+      </g>
+      <path style="fill:#5B5D6E;" d="M445.793,335.448H66.207c-7.313,0-13.241-5.929-13.241-13.241l0,0
+        c0-7.313,5.929-13.241,13.241-13.241h379.586c7.313,0,13.241,5.929,13.241,13.241l0,0
+        C459.034,329.519,453.106,335.448,445.793,335.448z"/>
+      <g>
+        <circle style="fill:#C3E678;" cx="445.793" cy="322.207" r="13.241"/>
+        <circle style="fill:#C3E678;" cx="401.655" cy="322.207" r="13.241"/>
+      </g>
+      <g>
+        <circle style="fill:#464655;" cx="357.517" cy="322.207" r="13.241"/>
+        <circle style="fill:#464655;" cx="313.379" cy="322.207" r="13.241"/>
+        <circle style="fill:#464655;" cx="269.241" cy="322.207" r="13.241"/>
+      </g>
+      <g>
+        <path style="fill:#C7CFE2;" d="M300.138,379.586h150.069c4.875,0,8.828-3.953,8.828-8.828l0,0c0-4.875-3.953-8.828-8.828-8.828
+          H300.138c-4.875,0-8.828,3.953-8.828,8.828l0,0C291.31,375.634,295.263,379.586,300.138,379.586z"/>
+        <path style="fill:#C7CFE2;" d="M61.793,379.586h150.069c4.875,0,8.828-3.953,8.828-8.828l0,0c0-4.875-3.953-8.828-8.828-8.828
+          H61.793c-4.875,0-8.828,3.953-8.828,8.828l0,0C52.966,375.634,56.918,379.586,61.793,379.586z"/>
+      </g>
+      <circle style="fill:#00D2FF;" cx="256" cy="370.759" r="17.655"/>
+      <path style="fill:#959CB3;" d="M502.465,264.828H9.535c-5.266,0-9.535-4.269-9.535-9.535V150.776c0-5.266,4.269-9.535,9.535-9.535
+        h492.93c5.266,0,9.535,4.269,9.535,9.535v104.516C512,260.558,507.731,264.828,502.465,264.828z"/>
+      <g>
+        <path style="fill:#707487;" d="M26.483,247.172L26.483,247.172c-4.875,0-8.828-3.953-8.828-8.828v-70.621
+          c0-4.875,3.953-8.828,8.828-8.828l0,0c4.875,0,8.828,3.953,8.828,8.828v70.621C35.31,243.22,31.358,247.172,26.483,247.172z"/>
+        <path style="fill:#707487;" d="M485.517,247.172L485.517,247.172c-4.875,0-8.828-3.953-8.828-8.828v-70.621
+          c0-4.875,3.953-8.828,8.828-8.828l0,0c4.875,0,8.828,3.953,8.828,8.828v70.621C494.345,243.22,490.392,247.172,485.517,247.172z"/>
+      </g>
+      <path style="fill:#5B5D6E;" d="M445.793,194.207H66.207c-7.313,0-13.241-5.929-13.241-13.241l0,0
+        c0-7.313,5.929-13.241,13.241-13.241h379.586c7.313,0,13.241,5.929,13.241,13.241l0,0
+        C459.034,188.278,453.106,194.207,445.793,194.207z"/>
+      <g>
+        <circle style="fill:#C3E678;" cx="445.793" cy="180.966" r="13.241"/>
+        <circle style="fill:#C3E678;" cx="401.655" cy="180.966" r="13.241"/>
+      </g>
+      <g>
+        <circle style="fill:#464655;" cx="357.517" cy="180.966" r="13.241"/>
+        <circle style="fill:#464655;" cx="313.379" cy="180.966" r="13.241"/>
+        <circle style="fill:#464655;" cx="269.241" cy="180.966" r="13.241"/>
+      </g>
+      <g>
+        <path style="fill:#C7CFE2;" d="M300.138,238.345h150.069c4.875,0,8.828-3.953,8.828-8.828l0,0c0-4.875-3.953-8.828-8.828-8.828
+          H300.138c-4.875,0-8.828,3.953-8.828,8.828l0,0C291.31,234.392,295.263,238.345,300.138,238.345z"/>
+        <path style="fill:#C7CFE2;" d="M61.793,238.345h150.069c4.875,0,8.828-3.953,8.828-8.828l0,0c0-4.875-3.953-8.828-8.828-8.828
+          H61.793c-4.875,0-8.828,3.953-8.828,8.828l0,0C52.966,234.392,56.918,238.345,61.793,238.345z"/>
+      </g>
+      <circle style="fill:#00D2FF;" cx="256" cy="229.517" r="17.655"/>
+      <rect x="203.034" y="459.034" style="fill:#464655;" width="105.931" height="35.31"/>
+      <path style="fill:#707487;" d="M282.483,512h-52.966c-4.875,0-8.828-3.953-8.828-8.828v-52.966c0-4.875,3.953-8.828,8.828-8.828
+        h52.966c4.875,0,8.828,3.953,8.828,8.828v52.966C291.31,508.047,287.358,512,282.483,512z"/>
+    </svg>
+
+    <g id="browser">
+      <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+      <svg width="800px" height="800px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g>
+          <g>
+            <path d="M45.47913,47.26579H4.5208c-1.9445,0-3.52083-1.57633-3.52083-3.52083V6.25508    c0-1.9445,1.57633-3.52083,3.52083-3.52083h40.95833c1.9445,0,3.52083,1.57633,3.52083,3.52083v37.48988    C48.99996,45.68946,47.42363,47.26579,45.47913,47.26579z" fill="#E7E3E6" />
+            <path d="M48.99997,9.76048V6.25507c0-1.94453-1.57633-3.52086-3.52081-3.52086H4.52079    c-1.94448,0-3.52081,1.57633-3.52081,3.52086v3.50541H48.99997z" fill="#53B1E2" />
+            <path d="M17.06462,10.40814H4.45078v-2.7194c0-0.67552,0.54762-1.22313,1.22313-1.22313h10.16758    c0.67552,0,1.22313,0.54762,1.22313,1.22313V10.40814z" fill="#E7E3E6" />
+            <path d="M29.67847,9.76048H17.06462V7.68875c0-0.67552,0.54762-1.22313,1.22313-1.22313h10.16758    c0.67552,0,1.22313,0.54762,1.22313,1.22313V9.76048z" fill="#D2D2D2" />
+            <circle cx="40.42996" cy="6.54935" fill="#E7E3E6" r="1.34955" />
+            <circle cx="36.3145" cy="6.54935" fill="#E7E3E6" r="1.34955" />
+          </g>
+          <g>
+            <rect fill="#D2D2D2" height="8.07299" width="41.91538" x="4.26873" y="12.18866" />
+            <g>
+              <circle cx="10.19687" cy="25.56284" fill="#EC6E62" r="2.83107" />
+              <circle cx="25.22643" cy="25.56284" fill="#85BD57" r="2.83107" />
+              <circle cx="40.25598" cy="25.56284" fill="#53B1E2" r="2.83107" />
+              <rect fill="#D2D2D2" height="0.79573" width="8.9377" x="5.72802" y="31.618" />
+              <rect fill="#D2D2D2" height="0.79573" width="8.9377" x="5.72802" y="30.11498" />
+              <rect fill="#D2D2D2" height="0.79575" width="6.33346" x="5.72803" y="33.12099" />
+              <g>
+                <rect fill="#D2D2D2" height="0.79573" width="8.9377" x="20.75758" y="31.618" />
+                <rect fill="#D2D2D2" height="0.79573" width="8.9377" x="20.75758" y="30.11498" />
+                <rect fill="#D2D2D2" height="0.79575" width="6.33346" x="20.75757" y="33.12099" />
+              </g>
+              <rect fill="#D2D2D2" height="0.79573" width="8.9377" x="35.78713" y="31.618" />
+              <rect fill="#D2D2D2" height="0.79573" width="8.9377" x="35.78713" y="30.11498" />
+              <rect fill="#D2D2D2" height="0.79575" width="6.33346" x="35.78712" y="33.12099" />
+              <rect fill="#EC6E62" height="7.46029" width="11.23692" x="4.57841" y="35.93731" />
+              <rect fill="#85BD57" height="7.46029" width="11.23692" x="19.60796" y="35.93731" />
+              <rect fill="#53B1E2" height="7.46029" width="11.23692" x="34.63752" y="35.93731" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </g>
+  </defs>
+</svg>
