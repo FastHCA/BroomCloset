@@ -1,7 +1,7 @@
 v2025.10
 
 
-Velkey iungo Adapter
+Valkey iungo Adapter
 ===
 
 ![System Synopsis](image/iungo_for_valkey_atchitecture.svg "System Synopsis")
