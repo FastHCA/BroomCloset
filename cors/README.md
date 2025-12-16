@@ -1,0 +1,1 @@
+Run it 🚀 [https://htmlpreview.github.io/?https://github.com/FastHCA/BroomCloset/blob/dev/cors/call_api_from_browser.html](https://htmlpreview.github.io/?https://github.com/FastHCA/BroomCloset/blob/dev/cors/call_api_from_browser.html)
