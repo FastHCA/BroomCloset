@@ -52,7 +52,7 @@
 
   <rect fill="#fff" stroke="#000" x="0" y="0" width="530" height="230" />
 
-  <!-- Service <-> Redis  -->
+  <!-- App <-> Redis  -->
   <path d="m80 101 l61 0" fill="transparent" stroke="#666666" stroke-width="2" stroke-dasharray="8">
     <animate
       attributeName="stroke-dashoffset"
@@ -80,11 +80,11 @@
       repeatCount="indefinite"/>
   </path>
 
-  <!-- Service -->
+  <!-- App -->
   <g transform="translate(10,105)">
     <use xlink:href="#host" transform="scale(0.20) translate(-30,-140)" />
 
-    <text x="28" y="36" class="service_name highlight">Service</text>
+    <text x="38" y="36" class="service_name highlight">App</text>
   </g>
 
   <!-- Browser -->
