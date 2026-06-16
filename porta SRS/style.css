@@ -1,0 +1,11 @@
+section-item {
+  display: block;
+  margin-left: 1em;
+}
+text-smaller {
+  font-size: smaller;
+}
+section-content {
+  display: block;
+  margin-left: 1em;
+}

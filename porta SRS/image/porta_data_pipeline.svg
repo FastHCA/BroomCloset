@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1042" height="402" viewBox="-0.5 -0.5 521 201" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- <svg width="200" height="150" viewBox="360 0 200 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+<!-- <svg width="60" height="60" viewBox="30 30 60 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+
+<!-- color pattern
+  https://coolors.co/cae7b9-f3de8a-eb9486-7e7f9a-dcdfe5-97a7b3
+-->
+<!-- <svg width="796.5" height="391.5" viewBox="-0.5 -30.5 531 261" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+  <g>
+    <rect x="0"   y="-30"  width="20" height="30" fill="#CAE7B9" />
+    <rect x="20"  y="-30"  width="20" height="30" fill="#F3DE8A" />
+    <rect x="40"  y="-30"  width="20" height="30" fill="#EB9486" />
+    <rect x="60"  y="-30"  width="20" height="30" fill="#7E7F9A" />
+    <rect x="80"  y="-30"  width="20" height="30" fill="#DCDFE5" />
+    <rect x="100" y="-30"  width="20" height="30" fill="#97A7B3" />
+  </g>
+
+
+  <style>
+    text {
+      font-family: sans-serif,Verdana,Tahoma;
+    }
+
+    .font-mono {
+      font-family:SF Mono,Consolas,DejaVu Sans Mono,Roboto Mono;
+    }
+
+    .path {
+      fill: none;
+      stroke: #7E7F9A;
+      stroke-dasharray: 4 3;
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
+
+    .stroke-red {
+      stroke: red;
+    }
+  </style>
+
+  <rect fill="#fff" stroke="#000" x="0" y="0" width="520" height="200" />
+
+  <g>
+    <!-- loop -->
+    <g transform="translate(5, 5)" visibility="hidden">
+      <line x1="0" x2="15" y1="0" y2="0" stroke="lightgray" />
+      <line x1="0" x2="15" y1="0" y2="0" stroke="black" stroke-dasharray="1 15">
+        <animate id="an_timer"
+          attributeType="XML"
+          attributeName="stroke-dasharray"
+          begin="0s;an_timer.end"
+          from="0 15"
+          to="15 15"
+          repeatCount="3"
+          dur="10s" />
+      </line>
+
+      <line x1="0" x2="15" y1="2" y2="2" stroke="lightgray" />
+      <line x1="0" x2="15" y1="2" y2="2" stroke="black" stroke-dasharray="1 15">
+        <animate id="an_timer_loop"
+          attributeType="XML"
+          attributeName="stroke-dasharray"
+          begin="an_timer.begin;an_timer.repeat(1);an_timer.repeat(2);an_timer.repeat(3);an_timer.repeat(4);an_timer.repeat(5);"
+          from="0 15"
+          to="15 15"
+          dur="10s" />
+      </line>
+    </g>
+
+    <!-- path -->
+    <g>
+      <path d="m25 40 h35" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+      <path d="m100 40 h4 a5 5 0 0 1 5 5 v10 a5 5 0 0 0 5 5 h292 a5 5 0 0 0 5 -5 v-10 a5 5 0 0 1 5 -5 h4" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+      <path d="m460 40 h35" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+
+      <!-- source pipeline -> forking -->
+      <path d="m120 60 a5 5 0 0 1 5 5 v10 a5 5 0 0 0 5 5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3s" />
+      </path>
+      <!-- forking -> source pipeline -->
+      <path d="m174 80 a5 5 0 0 0 5 -5 v-10 a5 5 0 0 1 5 -5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3s" />
+      </path>
+      <!-- source pipeline -> dispatching -->
+      <path d="m125 75 v20 a5 5 0 0 0 5 5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="4"
+          to="-144"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.25s" />
+      </path>
+      <!-- dispatching -> source pipeline -->
+      <path d="m174 100 a5 5 0 0 0 5 -5 v-20" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.25s" />
+      </path>
+      <!-- source pipeline -> filtering -->
+      <path d="m184 60 a5 5 0 0 0 5 -5 v-6 a5 5 0 0 1 5 -5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.5s" />
+      </path>
+      <!-- filtering -> source pipeline -->
+      <path d="m204 44 h2.5 a5 5 0 0 1 5 5 v6 a5 5 0 0 0 5 5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.5s" />
+      </path>
+      <!-- source pipeline -> converting -->
+      <path d="m218 60 a5 5 0 0 0 5 -5 v-6 a5 5 0 0 1 5 -5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.75s" />
+      </path>
+      <!-- converting -> source pipeline -->
+      <path d="m238 44 h2.5 a5 5 0 0 1 5 5 v6 a5 5 0 0 0 5 5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.75s" />
+      </path>
+
+      <!-- sink pipeline -> sink pipeline -->
+      <path d="m306 60 a5 5 0 0 1 5 5 v10 a5 5 0 0 0 5 5 h66 a5 5 0 0 0 5 -5 v-10 a5 5 0 0 1 5 -5" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+      <!-- sink pipeline -> merging -->
+      <path d="m316 80 a5 5 0 0 1 5 5 v10 a5 5 0 0 0 5 5 h2" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4s" />
+      </path>
+      <!-- merging -> sink pipeline -->
+      <path d="m370 100 h2 a5 5 0 0 0 5 -5 v-10 a5 5 0 0 1 5 -5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4s" />
+      </path>
+      <!-- sink pipeline -> aggregating -->
+      <path d="m321 95 v20 a5 5 0 0 0 5 5 h2" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4.25s" />
+      </path>
+      <!-- aggregating -> sink pipeline -->
+      <path d="m370 120 h2 a5 5 0 0 0 5 -5 v-20" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4.25s" />
+      </path>
+      <!-- sink pipeline -> integrating -->
+      <path d="m321 115 v20 a5 5 0 0 0 5 5 h2" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4.5s" />
+      </path>
+      <!-- integrating -> sink pipeline -->
+      <path d="m370 140 h2 a5 5 0 0 0 5 -5 v-20" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4.5s" />
+      </path>
+
+      <!-- sink pipeline internal -> sink pipeline internal -->
+      <path d="m382 80 a5 5 0 0 1 5 5 v62 a5 5 0 0 1 -5 5 h-66 a5 5 0 0 1 -5 -5 v-62 a5 5 0 0 1 5 -5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4.75s" />
+      </path>
+
+      <path d="m406 60 a5 5 0 0 1 5 5 v10 a5 5 0 0 0 5 5 h4" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+      <path d="m460 80 h4 a5 5 0 0 1 5 5 v80 a5 5 0 0 1 -5 5 h-408 a5 5 0 0 1 -5 -5 v-80 a5 5 0 0 1 5 -5 h4" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+      <path d="m100 80 h4 a5 5 0 0 0 5 -5 v-10 a5 5 0 0 1 5 -5" class="path">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="0"
+          to="-140"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+      </path>
+    </g>
+
+    <!-- START -->
+    <g transform="translate(0,20)">
+      <circle class="highlight" cx="20" cy="20" r="4" fill="#97A7B3" stroke="#97A7B3" stroke-width="2.5" />
+
+      <text x="20" y="11" font-size="5" font-weight="bold" alignment-baseline="middle" text-anchor="middle" fill="#97A7B3">START</text>
+    </g>
+
+    <g transform="translate(60,32)">
+      <rect width="40" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="20" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Source</text>
+
+    </g>
+
+    <!-- Source Pipeline -->
+    <g transform="translate(140,52)" visibility="visible">
+      <rect width="64" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="32" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Source Pipeline</text>
+
+      <set
+        attributeName="visibility"
+        to="hidden"
+        begin="an_timer.begin+2.5s" />
+      <animate
+        attributeName="opacity"
+        from="1"
+        to="0"
+        fill="freeze"
+        begin="an_timer.begin+1.5s"
+        dur="1s" />
+      <set
+        attributeName="visibility"
+        to="visible"
+        begin="an_timer.repeat(2)" />
+      <animate
+        attributeName="opacity"
+        from="0"
+        to="1"
+        fill="freeze"
+        begin="an_timer.repeat(2)"
+        dur="1s" />
+    </g>
+    <!-- Source Pipeline Internal -->
+    <g transform="translate(130,54)">
+      <!-- <rect width="150" height="60" rx="7" fill="lightgray" /> -->
+
+      <g transform="translate(0,20)" visibility="hidden">
+        <rect width="44" height="12" rx="6" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+        <text x="22" y="8.5" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Forking</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+2s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+2s"
+          dur="0.7s" />
+      </g>
+
+      <g transform="translate(0,40)" visibility="hidden">
+        <rect width="44" height="12" rx="6" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+        <text x="22" y="8.5" font-size="6.5" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Dispatching</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+2.25s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+2.25s"
+          dur="0.7s" />
+      </g>
+
+      <g transform="translate(60,-16)" visibility="hidden">
+        <circle cx="10" cy="6" r="5" fill="none" stroke="#97A7B3" stroke-width="2.5" />
+
+        <text x="10" y="-4" font-size="6.5" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="#97A7B3">Filtering</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+2.75s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+2.75s"
+          dur="0.7s" />
+      </g>
+      <g transform="translate(94,-16)" visibility="hidden">
+        <circle cx="10" cy="6" r="5" fill="none" stroke="#97A7B3" stroke-width="2.5" />
+
+        <text x="10" y="-4" font-size="6.5" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="#97A7B3">Converting</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+3s"
+          dur="0.7s" />
+      </g>
+    </g>
+
+    <!-- broker -->
+    <g transform="translate(240,52)">
+      <rect width="40" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="20" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Broker</text>
+
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="254,52"
+        to="240,52"
+        fill="freeze"
+        begin="an_timer.repeat(2)+0.5s"
+        dur="0.5s"
+        />
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="240,52"
+        to="254,52"
+        fill="freeze"
+        begin="an_timer.begin+3.25s"
+        dur="0.5s"
+        />
+    </g>
+
+    <!-- Sink Pipeline -->
+    <g transform="translate(320,72)" visibility="visible">
+      <rect width="58" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="29" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Sink Pipeline</text>
+
+      <set
+        attributeName="visibility"
+        to="hidden"
+        begin="an_timer.begin+4s" />
+      <animate
+        attributeName="opacity"
+        from="1"
+        to="0"
+        fill="freeze"
+        begin="an_timer.begin+3s"
+        dur="1s" />
+      <set
+        attributeName="visibility"
+        to="visible"
+        begin="an_timer.repeat(2)" />
+      <animate
+        attributeName="opacity"
+        from="0"
+        to="1"
+        fill="freeze"
+        begin="an_timer.repeat(2)"
+        dur="1s" />
+    </g>
+    <!-- Sink Pipeline Internal -->
+    <g transform="translate(320,74)">
+      <g transform="translate(8,0)" visibility="hidden">
+        <rect width="44" height="12" rx="6" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+        <text x="22" y="8.5" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Packing</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.5s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+3.5s"
+          dur="0.7s" />
+      </g>
+      <g transform="translate(8,20)" visibility="hidden">
+        <rect width="44" height="12" rx="6" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+        <text x="22" y="8.5" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Merging</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+3.75s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+3.75s"
+          dur="0.7s" />
+      </g>
+      <g transform="translate(8,40)" visibility="hidden">
+        <rect width="44" height="12" rx="6" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+        <text x="22" y="8.5" font-size="6.5" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Aggregating</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+4s"
+          dur="0.7s" />
+      </g>
+      <g transform="translate(8,60)" visibility="hidden">
+        <rect width="44" height="12" rx="6" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+        <text x="22" y="8.5" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Integrating</text>
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+1s" />
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          fill="freeze"
+          begin="an_timer.repeat(2)"
+          dur="1s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+4.25s" />
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          fill="freeze"
+          begin="an_timer.begin+4.25s"
+          dur="0.7s" />
+      </g>
+    </g>
+
+
+    <g transform="translate(420,32)">
+      <rect width="40" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="20" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Sink</text>
+
+    </g>
+
+    <!-- END -->
+    <g transform="translate(480,20)">
+      <circle class="highlight" cx="20" cy="20" r="2" fill="#97A7B3" stroke="#97A7B3" />
+      <circle class="highlight" cx="20" cy="20" r="5" fill="none" stroke="#97A7B3" stroke-width="1.5" />
+
+      <text x="20" y="11" font-size="5" font-weight="bold" alignment-baseline="middle" text-anchor="middle" fill="#97A7B3">END</text>
+    </g>
+
+
+    <g transform="translate(420,72)">
+      <rect width="40" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="20" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Publisher</text>
+    </g>
+
+    <g transform="translate(240,162)">
+      <rect width="40" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="20" y="8" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Internal</text>
+      <text x="20" y="15" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Queue</text>
+    </g>
+
+    <g transform="translate(60,72)">
+      <rect width="40" height="16" rx="8" fill="#97A7B3" stroke="#97A7B3" stroke-width="2" />
+
+      <text x="20" y="10" font-size="7" font-weight="bold" alignment-baseline="baseline" text-anchor="middle" fill="white">Subscriber</text>
+    </g>
+  </g>
+
+
+
+  <defs>
+  </defs>
+</svg>
