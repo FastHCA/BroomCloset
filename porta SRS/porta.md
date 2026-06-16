@@ -52,7 +52,7 @@ A. **工作者型態 (Worker Patterns)**<br>
      ▸ **路徑**：`Stdout / Stderr -> DB / Broker / API`<br>
      系統作為宿主或 Sidecar 運行，接管下游程序的標準輸出流。透過 Pipe (管道) 技術即時擷取輸出內容，結合「腳本管理器」進行正則解析 (Regex Parsing) 後，轉化為結構化訊息投遞。
 
-B. **訊息代理型態 (Broker Patterns)**
+B. **訊息代理型態 (Broker Patterns)**<br>
    <section-content>定義系統作為接收端時的角色：</section-content>
 
    - **生產者網關模式 (Producer/Ingress Mode)**<br>
