@@ -68,7 +68,9 @@ B. **訊息代理型態 (Broker Patterns)**
 
 A. **單向拓撲與多管線級聯 (Directional Topology & Cascade)**
    - **單向流向規範**：資料管線配置嚴格遵循單向流動原則，其核心節點路徑為：
+
       $$\text{Source} \longrightarrow \text{Source Pipeline} \longrightarrow \text{Broker} \longrightarrow \text{Sink Pipeline} \longrightarrow \text{Sink}$$
+
       管線完整涵蓋資料端點（Source, Sink, Broker）以及資料操作（分流、分支、過濾、轉換等）。
    - **虛擬端點級聯 (Pipeline Cascading)**：系統提供 Publisher (Sink 端點) 與 Subscriber (Source 端點) 兩個虛擬對接器。管線 A 可透過 Publisher 將加工後的數據投遞至內部 Broker，再由管線 B 的 Subscriber 訂閱接續處理。藉由這種級聯機制，可將多個簡單的子管線（Sub-pipelines）任意串聯，拼裝成複雜的分散式資料網狀拓撲。
 
