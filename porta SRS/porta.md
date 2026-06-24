@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="./style.css"/>
 v2025.11
 
 Porta
@@ -275,3 +275,486 @@ C. **資料層面 (Data Plane)**<br>
         - **應用層**： 透過 RESTful API 或 Webhook 主動觸發業務應用服務。
 
 
+## 4 系統設計
+
+### 4.1 資料管線配置
+
+#### 4.1.1 資源配置檔 (Resource)
+⠛ 配置 *共用資源* 的區段。
+
+   -  **格式**：
+      ```hcl
+      var {
+         ...
+      }
+
+      service <SERVICE-TYPE> "<SERVICE_NAME>" {
+         ....
+      }
+      ```
+   - **區段**：
+      - **var**：配置 *環境變數* 與 *共用變數*。
+      - **service**：配置 *Source/Sink/Broker* 服務。
+
+
+##### 4.1.1.1 共用變數配置
+⠛ 配置 *環境變數* 與 *共用變數* 的區段。
+
+   ▸ **區段名稱**： `var`
+   -  **格式**：
+      ```hcl
+      var {
+         <VAR_NAME> = Expression
+         ...
+      }
+      ```
+
+   - **變數數值**：<br>
+     變數數值接受 HCL Expression 表達式，包含變數、樣板、算術運算、數值、函式…等。變數可接受的數值如下：
+      | 型別      | 範例           |
+      |----------|:---------------|
+      | null     | `foo = null`
+      | boolean  | `foo = true`
+      | number   | `foo = -3.14`
+      | string   | `foo = "foo"`
+      | duration | `foo = 30s` ⚠️標準 HCL 不支援
+      | disksize | `foo = 10mb` ⚠️標準 HCL 不支援
+      | tuple    | `foo = [ foo, bar ]`
+      | object   | `foo = { foo = 1, bar = 2}`
+   - **環境變數**：<br>
+     使用函式表達式 `env()` 設定。使用方式如下：
+
+     `env("<ENVIRONMENT_VARIABLE_NAME>")`
+
+      > 📝 `env()`函式只能在 var 區段內使用。另該函式會強制檢查環境變數是否存在，若不存在無法載入配置檔。
+
+
+##### 4.1.1.2 服務配置
+⠛ 配置 *Source/Sink/Broker* 服務的區段。
+
+   ▸ **區段名稱**： `service`
+   -  **格式**：
+      ```hcl
+      service <SERVICE-TYPE> "<SERVICE_NAME>" {
+         address  = "mq://xxxx,mq://yyyy,mq://zzzz"
+         user     = ...
+         password = ...
+         database = ...
+         timeout  = ...  // connection timeout
+
+         certificate     = ...
+         certificate_key = ...
+      }
+      ```
+      - 服務類型由 `<SERVICE-TYPE>` 指定（如 http、postgresql、rabbitmq）。
+      - 每個服務由 **service 區段** 命名唯一的 `<SERVICE_NAME>` 名稱，該名稱作為 [4.1.3 資料管線配置檔 (Pipeline)](#413-資料管線配置檔-pipeline) 的引用。
+   - **屬性**：
+      - **address** <sup>`string`</sup>：設定服務的連線類型、網路位置、連接埠。
+      - **user** <sup>`string`</sup>：設定服務的連線帳戶。
+      - **password** <sup>`string`</sup>：設定服務的連線密碼。
+      - **database** <sup>`string`</sup>：設定服務的連線預設資料庫，適用於資料庫服務。
+      - **timeout** <sup>`duration`</sup>：設定服務的連線逾時值。
+      - **certificate** <sup>`string`</sup>：設定服務連線認證憑證檔位置。
+      - **certificate_key** <sup>`string`</sup>：設定服務連線認證憑證金鑰內容。
+
+
+#### 4.1.2 管道配置檔 (pipe)
+⠛ 配置 *資料管道* 的區段，處理有狀態且跨訊息或跨資料來源的複雜運算。
+
+   ▸ **區段名稱**： `pipe`
+   -  **格式**：
+      ```hcl
+      pipe "<PIPE_NAME>" {
+         #!use_number_sequence for pipe_id
+
+         workflow = [ "<LOCAL_PIPE_ID>",... ]
+
+         packing "<LOCAL_PIPE_ID?>" {
+            ...
+         }
+         aggregating "<LOCAL_PIPE_ID?>" {
+            ...
+         }
+         merging "<LOCAL_PIPE_ID?>" {
+            ...
+         }
+         integrating "<LOCAL_PIPE_ID?>" {
+            ...
+         }
+
+         sink <SINK-TYPE> {
+            ...
+         }
+      }
+      ```
+      每個管道由 **pipe 區段** 命名唯一的 `<PIPE_NAME>` 名稱，該名稱作為 [4.1.3 資料管線配置檔 (Pipeline)](#413-資料管線配置檔-pipeline) 的引用，也可以接受其它 **pipe 區段** 引用。
+   - **屬性**：
+      - **next** <sup>`string`</sup>：設定本管道得出運算結果後，指定 `<PIPE_NAME>` 所代表的 *pipe 區段* 接手後續處理。
+      - **workflow** <sup>`tuple`</sup>：安排管道內所屬 `LOCAL_PIPE_ID` 所代表的子管道的運算優先順序。
+   - **區段**：
+      - **packing**：打包處理管道類型配置。見 [4.1.2.1 packing 管道類型配置](#4121-packing-管道類型配置)。
+      - **aggregating**：聚合處理管道類型配置。見 [4.1.2.2 aggregating 管道類型配置](#4122-aggregating-管道類型配置)。
+      - **merging**：合併處理管道類型配置。見 [4.1.2.3 merging 管道類型配置](#4123-merging-管道類型配置)。
+      - **integrating**：整合處理管道類型配置。見 [4.1.2.4 integrating 管道類型配置](#4124-integrating-管道類型配置)。
+      - **sink**：sink 管道類型配置。見 [4.1.3.1 sink 輸出端點配置](#4131-sink-輸出端點配置)。
+
+
+##### 4.1.2.1 packing 管道類型配置
+⠛ 配置打包處理管道。
+
+   ▸ **區段名稱**： `packing`
+   -  **格式**：
+      ```hcl
+      packing "<LOCAL_PIPE_ID?>" {
+         field = {
+            $        : [ (key), <FIELD_NAME>,... ]  // 滙入所選欄位
+            key      : [ <FIELD_NAME>,... ]         // 主鍵欄位
+            "<FIELD>": packing-id | ...             // 打包識別碼，⚠️HCL 不支援
+            "<FIELD>": <TYPE?> | [ <VALUE_PROCESSOR>, ... ]
+                     ? <DEFAULT_VALUE or FIELD>     // ⚠️ HCL 不支援
+         }
+
+         min_time    = ...
+         max_time    = ...
+         min_records = ...
+         max_records = ...
+         min_bytes   = ...
+         max_bytes   = ...
+      }
+      ```
+      packing 管道類型能夠命名所屬父層級 **pipe 區段** 內唯一的 `<LOCAL_PIPE_ID>` 名稱，該名稱作為所屬 **pipe 區段** 內 **workflow** 屬性定義運算順序使用。
+   - **屬性**：
+      - **field** <sup>`object`</sup>：設定紀錄所需的資料欄位、欄位型別、欄位處理器或預設值。
+      - **min_time** <sup>`duration`</sup>：設定觸發打包的最小等待時間。
+      - **max_time** <sup>`duration`</sup>：設定觸發打包的最大等待時間。
+      - **min_records** <sup>`number`</sup>：設定觸發打包的最小紀錄筆數。
+      - **max_records** <sup>`number`</sup>：設定觸發打包的最大紀錄筆數。
+      - **min_bytes** <sup>`disksize`</sup>：設定觸發打包的最小容量。
+      - **max_bytes** <sup>`disksize`</sup>：設定觸發打包的最大容量。
+
+##### 4.1.2.2 aggregating 管道類型配置
+⠛ 配置聚合處理管道。
+
+   ▸ **區段名稱**： `aggregating`
+   -  **格式**：
+      ```hcl
+      aggregating "<LOCAL_PIPE_ID?>" {
+         field = {
+            key       : [ <FIELD_NAME>,... ]
+            "<FIELD>" : <AGGREGATION_EXPRESS>
+         }
+
+         window <WINDOW-FUNCTION> {
+            ...
+         }
+      }
+      ```
+      aggregating 管道類型能夠命名所屬父層級 **pipe 區段** 內唯一的 `<LOCAL_PIPE_ID>` 名稱，該名稱作為所屬 **pipe 區段** 內 **workflow** 屬性定義運算順序使用。
+   - **屬性**：
+      - **field** <sup>`object`</sup>：設定聚合運算的主鍵資料欄、運算資料欄位與聚合運算表達式。
+         ```hcl
+         field = {
+            key            : [ date("create_at") as "date" ]  // ⚠️ HCL 不支援 as 語法
+            "total_amount" : count("amount")
+         }
+         ```
+   - **區段**：
+      - **window**：設定 Streaming Window Function 函式。見 [4.1.2.2.1 window 區段配置](#41221-window-區段配置)。
+
+###### 4.1.2.2.1 window 區段配置
+⠛ 配置 *窗格函式* 的區段。
+
+   ▸ **區段名稱**： `window`<br>
+   -  **格式**：
+      ```hcl
+      window <WINDOW-FUNCTION> {
+         ...
+      }
+      ```
+      區段 `<WINDOW-FUNCTION>` 指定窗格函式類型。
+
+   1. **flushing 窗格函式**<br>
+      ▸ **函式名稱**： `flushing`
+      - **格式**：
+         ```hcl
+         window flushing {
+            max_time    = ...  // ⚠️ HCL 不支援
+            max_records = ...
+         }
+         ```
+      - **屬性**：
+         - **max_time** <sup>`duration`</sup>：設定窗格運算的最大等待時間。
+         - **max_records** <sup>`number`</sup>：設定窗格運算的最大紀錄筆數。
+   2. **tumbling 窗格函式**<br>
+      ▸ **函式名稱**： `tumbling`
+      - **格式**：
+         ```hcl
+         window tumbling {
+            window_size = ...  // ⚠️ HCL 不支援
+         }
+         ```
+      - **屬性**：
+         - **window_size** <sup>`duration`</sup>：設定窗格運算的時間長度。
+   3. **hopping 窗格函式**<br>
+      ▸ **函式名稱**： `hopping`
+      - **格式**：
+         ```hcl
+         window hopping {
+            window_size  = ...  // ⚠️ HCL 不支援
+            slide_size   = ...  // ⚠️ HCL 不支援
+         }
+         ```
+      - **屬性**：
+         - **window_size** <sup>`duration`</sup>：設定窗格運算的時間長度。
+         - **slide_size** <sup>`duration`</sup>：設定窗格運算的滑動步長。
+   4. **sliding 窗格函式**<br>
+      ▸ **函式名稱**： `sliding`
+      - **格式**：
+         ```hcl
+         window sliding {
+            window_size  = ...  // ⚠️ HCL 不支援
+            slide_size   = ...  // ⚠️ HCL 不支援
+         }
+         ```
+      - **屬性**：
+         - **window_size** <sup>`duration`</sup>：設定窗格運算的時間長度。
+         - **slide_size** <sup>`duration`</sup>：設定窗格運算的滑動步長。
+   5. **session 窗格函式**<br>
+      ▸ **函式名稱**： `session`
+      - **格式**：
+         ```hcl
+         window session {
+            gap = ...  // ⚠️ HCL 不支援
+         }
+         ```
+      - **屬性**：
+         - **gap** <sup>`duration`</sup>：設定窗格運算的非活躍間隔。
+
+
+##### 4.1.2.3 merging 管道類型配置
+⠛ 配置合併處理管道。
+
+   ▸ **區段名稱**： `merging`
+   - **格式**：
+      ```hcl
+      merging "<LOCAL_PIPE_ID?>" {
+         field = {
+            $        : [ <FIELD_NAME>,... ]         // 滙入所選欄位
+            ^        : [ <FIELD_NAME>,... ]         // 排除所選欄位
+            "<FIELD>": <TYPE?> | [ <VALUE_PROCESSOR>, ... ]
+                     ? <DEFAULT_VALUE or FIELD>     // ⚠️ HCL 不支援
+         }
+      }
+      ```
+      merging 管道類型能夠命名所屬父層級 **pipe 區段** 內唯一的 `<LOCAL_PIPE_ID>` 名稱，該名稱作為所屬 **pipe 區段** 內 **workflow** 屬性定義運算順序使用。
+   - **屬性**：
+      - **field** <sup>`object`</sup>：設定紀錄所需的資料欄位、欄位型別、欄位處理器或預設值。
+
+
+##### 4.1.2.4 integrating 管道類型配置
+⠛ 配置整合處理管道。
+
+   ▸ **區段名稱**： `integrating`
+   -  **格式**：
+      ```hcl
+      integrating "<LOCAL_PIPE_ID>" {
+         field = {
+            $        : [ (key), <FIELD_NAME>,... ]   // 滙入所選欄位
+            key      : [ <FIELD_NAME>,... ]          // 主鍵欄位
+            version  : <FIELD> by ...                // 版本欄位與判定方法，
+                                                     // ⚠️ HCL 不支援
+            "<FIELD>": <TYPE?> | [ <VALUE_PROCESSOR>, ... ]
+                     ? <DEFAULT_VALUE or FIELD>      // ⚠️ HCL 不支援
+         }
+         timeout = ...
+      }
+      ```
+      integrating 管道類型能夠命名所屬父層級 **pipe 區段** 內唯一的 `<LOCAL_PIPE_ID>` 名稱，該名稱作為所屬 **pipe 區段** 內 **workflow** 屬性定義運算順序使用。
+   - **屬性**：
+      - **field** <sup>`object`</sup>：設定紀錄所需的資料欄位、欄位型別、欄位處理器或預設值。
+      - **timeout** <sup>`duration`</sup>：設定最大等待時間。
+
+
+#### 4.1.3 資料管線配置檔 (Pipeline)
+⠛ 配置 *資料管線* 的區段。
+
+   ▸ **區段名稱**： `pipeline`
+   -  **格式**：
+      ```hcl
+      pipeline "<PIPELINE_NAME>" {
+         source   = "<SERVICE_NAME>" || "subscriber://<INTERNAL_QUEUE_NAME>"
+         broker   = "<SERVICE_NAME>"
+         stream   = "<TOPIC_NAME or REPLICATION_SLOT_NAME>"
+         database = ...
+         timeout  = ...   // read timeout
+         option  = {
+            <ARG_NAME>: ...
+            ...
+         }
+
+         message {
+            decoding = ...
+            field = {
+               $        : [ <FIELD_NAME>,... ]       // 滙入所選欄位
+               ^        : [ <FIELD_NAME>,... ]       // 排除所選欄位
+               "<FIELD>": <TYPE> | [ <VALUE_PROCESSOR>,... ]
+                        ? <DEFAULT_VALUE or FIELD>   // ⚠️ HCL 不支援
+            }
+         }
+
+         sink "<PIPELINE_NODE_NAME?>" {
+            ...
+         }
+
+         channel "<PIPELINE_NODE_NAME?>" {
+            ...
+         }
+      }
+      ```
+      命名管線全域唯一名稱 `<PIPELINE_NAME>`　，該名稱作為手動切換模式控制或定時任務使用。
+   - **屬性**：
+      - **source** <sup>`string`</sup>：設定來源服務名稱，這個名稱可以是 [4.1.1.2 服務配置](#4112-服務配置) 的 `<SERVICE_NAME>` 或是 Subscriber 指定的內部佇列位置。
+      - **broker** <sup>`string`</sup>：設定要使用的代理服務。
+      - **stream** <sup>`string`</sup>：設定來源流的 Topic 名稱或 Postgresql CDC 的 Replication Slot 名稱。
+      - **database** <sup>`string`</sup>：設定 CDC 來源的所屬資料庫名稱。
+      - **timeout** <sup>`duration`</sup>：設定資料傳輸的讀取逾時值。
+      - **option** <sup>`object`</sup>：設定額外參數。
+   - **區段**：
+      - **message**：設定訊息編碼格式、資料欄位、型別與欄位裁剪。可配置屬性：
+         - **decoding** <sup>`string`</sup>：設定訊息解碼格式。
+         - **field** <sup>`object`</sup>：設定紀錄所需的資料欄位、欄位型別、欄位處理器或預設值。
+      - **sink**：配置 *資料管線* 的輸出端點
+      - **channel**：配置 *資料管線* 的輸出渠道。
+
+
+##### 4.1.3.1 sink 輸出端點配置
+⠛ 配置 *資料管線* 的輸出端點。
+
+   ▸ **區段名稱**： `sink`
+   -  **格式**：
+      ```hcl
+      sink "<PIPELINE_NODE_NAME?>" {
+         service  = "<SERVICE_NAME>" || "publisher://<INTERNAL_QUEUE_NAME>" || "pipe://<PIPE_NAME>"
+         stream   = ...
+         database = ...
+         table    = ...
+         timeout  = ...      // write timeout
+         option = {
+            <ARG_NAME>: ...
+            ...
+         }
+
+         scripting {
+            ...
+         }
+
+         record {
+            ...
+         }
+      }
+      ```
+      **sink 區段** 能夠命名 `<PIPELINE_NODE_NAME>` 為其所屬父層級 **pipeline 區段** 內唯一的名稱，該名稱作為手動切換模式控制或定時任務使用。
+   - **屬性**：
+      - **service** <sup>`string`</sup>：設定輸出端點服務名稱，這個名稱可以是 [4.1.1.2 服務配置](#4112-服務配置) 的 `<SERVICE_NAME>` 或是 Publisher 指定的內部佇列位置。
+      - **stream** <sup>`string`</sup>：設定輸出流的 Topic 名稱。
+      - **database** <sup>`string`</sup>：設定輸出的目的資料庫名稱。
+      - **table** <sup>`string`</sup>：設定輸出的目的資料表名稱。
+      - **timeout** <sup>`duration`</sup>：設定資料傳輸的寫入逾時值。
+      - **option** <sup>`object`</sup>：設定額外參數。
+   - **區段**：
+      - **scripting**：設定資料紀錄的處理腳本。見 [4.1.3.1.2 scripting 資料處理腳本配置](#41312-scripting-資料處理腳本配置)。
+      - **record**：設定記錄輸出的欄位、編碼格式或後處理資料管道。見 [4.1.3.1.3 record 輸出紀錄格式配置](#41313-record-輸出紀錄格式配置)。
+
+
+###### 4.1.3.1.2 scripting 資料處理腳本配置
+⠛ 配置資料紀錄的處理腳本。
+
+   ▸ **區段名稱**： `scripting`
+   -  **格式**：
+      ```hcl
+      scripting {
+         filtering "<SCRIPT_LANGUAGE?>" {
+            <SCRIPT>       // ⚠️ HCL 不支援 block 內放置文字內容
+         }
+         converting "<SCRIPT_LANGUAGE?>" {
+            <SCRIPT>       // ⚠️ HCL 不支援 block 內放置文字內容
+         }
+      }
+      ```
+   - **區段**：
+      - **filtering**：設定訊息篩選的邏輯。
+      - **converting**：設定資料紀錄欄位值轉換的邏輯。
+
+
+###### 4.1.3.1.3 record 輸出紀錄格式配置
+⠛ 配置輸出紀錄格式。
+
+   ▸ **區段名稱**： `record`
+   -  **格式**：
+      ```hcl
+      record {
+         encoding = ...
+         field = {
+            $        : [ <FIELD_NAME>,... ]       // 滙入所選欄位
+            ^        : [ <FIELD_NAME>,... ]       // 排除所選欄位
+            "<FIELD>": <TYPE> | [ <VALUE_PROCESSOR>, ... ]
+                     ? <DEFAULT_VALUE or FIELD>   // ⚠️ HCL 不支援
+         }
+
+         aggregating {
+            ...
+         }
+
+         packing {
+            ...
+         }
+
+         formatting {
+            <TEXT>   // ⚠️ HCL 不支援 block 內放置文字內容
+         }
+      }
+      ```
+   - **屬性**：
+      - **encoding** <sup>`string`</sup>：設定訊息編碼格式。
+      - **field** <sup>`object`</sup>：設定紀錄所需的資料欄位、欄位型別、欄位處理器或預設值。
+   - **區段**：
+      - **aggregating**：指定紀錄進行聚合處理的參數。見 [4.1.2.2 aggregating 管道類型配置](#4122-aggregating-管道類型配置)。
+      - **packing**：設定紀錄打包處理的參數。見 [4.1.2.1 packing 管道類型配置](#4121-packing-管道類型配置)。
+      - **formatting**：指定要輸出的字面值（如 SQL陳述式）。
+
+
+##### 4.1.3.2 channel 輸出渠道配置
+⠛ 配置 *資料管線* 的輸出渠道。
+
+   ▸ **區段名稱**： `channel`
+   -  **格式**：
+      ```hcl
+      channel "<PIPELINE_NODE_NAME?>" {
+         broker = "<SERVICE_NAME>"
+         sample = ...
+
+         scripting {
+            ...
+         }
+
+         record {
+            ...
+         }
+
+         sink "<PIPELINE_NODE_NAME?>" {
+            ...
+         }
+      }
+      ```
+      **channel 區段** 能夠命名 `<PIPELINE_NODE_NAME>` 為其所屬父層級 **pipeline 區段** 內唯一的名稱，該名稱作為手動切換模式控制或定時任務使用。
+   - **屬性**：
+      - **broker** <sup>`string`</sup>：設定要使用的代理服務。此處設定可以取代父層級 **pipeline 區段** 內指定的 broker 的值，用來指定該渠道的訊息由哪個 broker 接收。
+      - **sample** <sup>`number`</sup>：設定要來源流取樣比例，該值介於0~1之間的小數。
+      - **field** <sup>`object`</sup>：設定紀錄所需的資料欄位、欄位型別、欄位處理器或預設值。
+   - **區段**：
+      - **scripting**：設定資料紀錄的處理腳本。見 [4.1.3.1.2 scripting 資料處理腳本配置](#41312-scripting-資料處理腳本配置)。
+      - **record**：設定輸出記錄欄位、編碼格式或後處理資料管道。見 [4.1.3.1.3 record 輸出紀錄格式配置](#41313-record-輸出紀錄格式配置)。
+      - **sink**：指定要輸出的端點。見 [4.1.3.1 sink 輸出端點配置](#4131-sink-輸出端點配置)。
+
+
+### 4.2
