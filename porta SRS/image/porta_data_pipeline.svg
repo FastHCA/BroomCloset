@@ -365,6 +365,24 @@
           to="visible"
           begin="an_timer.begin+4.75s" />
       </path>
+      <!-- sink pipeline internal -> broker -->
+      <path d="m316 152 h-66 a5 5 0 0 1 -5 -5 v-82 a5 5 0 0 1 5 -5" class="path hidden">
+        <animate
+          attributeName="stroke-dashoffset"
+          from="4"
+          to="-144"
+          begin="an_timer_loop.begin"
+          dur="10s" />
+
+        <set
+          attributeName="visibility"
+          to="hidden"
+          begin="an_timer.repeat(2)+0.5s" />
+        <set
+          attributeName="visibility"
+          to="visible"
+          begin="an_timer.begin+5s" />
+      </path>
 
       <path d="m406 60 a5 5 0 0 1 5 5 v10 a5 5 0 0 0 5 5 h4" class="path">
         <animate
